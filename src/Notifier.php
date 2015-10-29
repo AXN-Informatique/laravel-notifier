@@ -4,7 +4,7 @@ namespace Axn\LaravelNotifier;
 
 use Illuminate\Session\SessionInterface;
 
-abstract class Notifier implements Contract
+class Notifier implements Contract
 {
     /**
      * Instance du manager de session de Laravel.
@@ -75,63 +75,70 @@ abstract class Notifier implements Contract
     /**
      * Affiche un message de type succès.
      *
+     * @param  string      $view
      * @param  string      $message
      * @param  string|null $title
      * @return string
      */
-    public function showSuccess($message, $title = null)
+    public function showSuccess($view, $message, $title = null)
     {
-        return $this->show('success', $message, $title);
+        return $this->show($view, 'success', $message, $title);
     }
 
     /**
      * Affiche un message de type information.
      *
+     * @param  string      $view
      * @param  string      $message
      * @param  string|null $title
      * @return string
      */
-    public function showInfo($message, $title = null)
+    public function showInfo($view, $message, $title = null)
     {
-        return $this->show('info', $message, $title);
+        return $this->show($view, 'info', $message, $title);
     }
 
     /**
      * Affiche un message de type avertissement.
      *
+     * @param  string      $view
      * @param  string      $message
      * @param  string|null $title
      * @return string
      */
-    public function showWarning($message, $title = null)
+    public function showWarning($view, $message, $title = null)
     {
-        return $this->show('warning', $message, $title);
+        return $this->show($view, 'warning', $message, $title);
     }
 
     /**
      * Affiche un message de type erreur.
      *
+     * @param  string      $view
      * @param  string      $message
      * @param  string|null $title
      * @return string
      */
-    public function showError($message, $title = null)
+    public function showError($view, $message, $title = null)
     {
-        return $this->show('error', $message, $title);
+        return $this->show($view, 'error', $message, $title);
     }
 
     /**
      * Affiche un message enregistré en session flash.
      *
+     * @param  string $view
      * @return string
      */
-    public function showFlash()
+    public function showFlash($view)
     {
         if (!$this->session->has('notify')) {
             return '';
         }
 
-        return call_user_func_array([$this, 'show'], $this->session->get('notify'));
+        $args = ['view' => $view] + $this->session->get('notify');
+
+        return call_user_func_array([$this, 'show'], $args);
     }
 
     /**
@@ -155,5 +162,8 @@ abstract class Notifier implements Contract
      * @param  string|null $title
      * @return string
      */
-    abstract protected function show($type, $message, $title = null);
+    protected function show($view, $type, $message, $title)
+    {
+        return view($view, compact('type', 'message', 'title'));
+    }
 }

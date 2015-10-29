@@ -13,7 +13,12 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            __NAMESPACE__ . '\Contract',
+            function($app) {
+                return new Notifier($app['session.store']);
+            }
+        );
     }
 
     /**
