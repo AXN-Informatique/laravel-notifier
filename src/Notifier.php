@@ -1,10 +1,10 @@
 <?php
 
-namespace Axn\LaravelNotify;
+namespace Axn\LaravelNotifier;
 
 use Illuminate\Session\SessionManager;
 
-abstract class Notify implements Contract
+abstract class Notifier implements Contract
 {
     /**
      * Instance du manager de session de Laravel.
@@ -31,9 +31,45 @@ abstract class Notify implements Contract
      * @param  string|null $title
      * @return void
      */
-    public function flashSuccess($message, $title = null)
+    public function success($message, $title = null)
     {
         $this->flash('success', $message, $title);
+    }
+
+    /**
+     * Enregistre en session flash un message de type information.
+     *
+     * @param  string      $message
+     * @param  string|null $title
+     * @return void
+     */
+    public function info($message, $title = null)
+    {
+        $this->flash('info', $message, $title);
+    }
+
+    /**
+     * Enregistre en session flash un message de type avertissement.
+     *
+     * @param  string      $message
+     * @param  string|null $title
+     * @return void
+     */
+    public function warning($message, $title = null)
+    {
+        $this->flash('warning', $message, $title);
+    }
+
+    /**
+     * Enregistre en session flash un message de type erreur.
+     *
+     * @param  string      $message
+     * @param  string|null $title
+     * @return void
+     */
+    public function error($message, $title = null)
+    {
+        $this->flash('error', $message, $title);
     }
 
     /**
@@ -49,39 +85,15 @@ abstract class Notify implements Contract
     }
 
     /**
-     * Enregistre en session flash un message de type erreur.
-     *
-     * @param  string      $message
-     * @param  string|null $title
-     * @return void
-     */
-    public function flashError($message, $title = null)
-    {
-        $this->flash('error', $message, $title);
-    }
-
-    /**
-     * Affiche un message de type erreur.
+     * Affiche un message de type information.
      *
      * @param  string      $message
      * @param  string|null $title
      * @return string
      */
-    public function showError($message, $title = null)
+    public function showInfo($message, $title = null)
     {
-        return $this->show('error', $message, $title);
-    }
-
-    /**
-     * Enregistre en session flash un message de type avertissement.
-     *
-     * @param  string      $message
-     * @param  string|null $title
-     * @return void
-     */
-    public function flashWarning($message, $title = null)
-    {
-        $this->flash('warning', $message, $title);
+        return $this->show('info', $message, $title);
     }
 
     /**
@@ -97,27 +109,15 @@ abstract class Notify implements Contract
     }
 
     /**
-     * Enregistre en session flash un message de type information.
-     *
-     * @param  string      $message
-     * @param  string|null $title
-     * @return void
-     */
-    public function flashInfo($message, $title = null)
-    {
-        $this->flash('info', $message, $title);
-    }
-
-    /**
-     * Affiche un message de type information.
+     * Affiche un message de type erreur.
      *
      * @param  string      $message
      * @param  string|null $title
      * @return string
      */
-    public function showInfo($message, $title = null)
+    public function showError($message, $title = null)
     {
-        return $this->show('info', $message, $title);
+        return $this->show('error', $message, $title);
     }
 
     /**

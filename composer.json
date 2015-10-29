@@ -1,5 +1,5 @@
 {
-    "name" : "axn/laravel-notify",
+    "name" : "axn/laravel-notifier",
     "minimum-stability" : "stable",
     "require" : {
         "illuminate/support" : "~5.0",
@@ -7,7 +7,7 @@
     },
     "autoload" : {
         "psr-4" : {
-            "Axn\\LaravelNotify\\" : "src/"
+            "Axn\\LaravelNotifier\\" : "src/"
         }
     }
 }

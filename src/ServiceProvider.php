@@ -1,6 +1,6 @@
 <?php
 
-namespace Axn\LaravelNotify;
+namespace Axn\LaravelNotifier;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
@@ -23,6 +23,10 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function boot()
     {
-        //
+        $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'notifier');
+
+        $this->publishes([
+            __DIR__ . '/../resources/views/' => base_path('resources/views/vendor/notifier'),
+        ]);
     }
 }

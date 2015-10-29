@@ -2,7 +2,7 @@
 
 namespace Axn\LaravelNotifier;
 
-class PNotify extends Notifier
+class Bootstrap3 extends Notifier
 {
     /**
      * Retourne le code HTML/JS pour l'afficage de la notification avec PNotify.
@@ -14,14 +14,14 @@ class PNotify extends Notifier
      */
     protected function show($type, $message, $title = null)
     {
-        $options = ['type' => $type, 'text' => $message];
-
-        if (!empty($title)) {
-            $options['title'] = $title;
+        if ($type === 'error') {
+            $type = 'danger';
         }
 
-        return view('notifier::pnotify', [
-            'options' => $options
+        return view('notifier::bootstrap3', [
+            'type'    => $type,
+            'message' => $message,
+            'title'   => $title
         ]);
     }
 }

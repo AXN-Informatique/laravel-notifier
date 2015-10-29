@@ -1,6 +1,6 @@
 <?php
 
-namespace Axn\LaravelNotify;
+namespace Axn\LaravelNotifier;
 
 use Illuminate\Support\Facades\Facade as BaseFacade;
 
@@ -8,6 +8,6 @@ class Facade extends BaseFacade
 {
     public static function getFacadeAccessor()
     {
-        return 'Axn\LaravelNotify\Contract';
+        return 'Axn\LaravelNotifier\Contract';
     }
 }
