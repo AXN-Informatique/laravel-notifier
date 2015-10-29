@@ -2,7 +2,7 @@
 
 namespace Axn\LaravelNotifier;
 
-use Illuminate\Session\SessionManager;
+use Illuminate\Session\SessionInterface;
 
 abstract class Notifier implements Contract
 {
@@ -16,10 +16,10 @@ abstract class Notifier implements Contract
     /**
      * Constructeur.
      *
-     * @param  SessionManager $session
+     * @param  SessionInterface $session
      * @return void
      */
-    public function __construct(SessionManager $session)
+    public function __construct(SessionInterface $session)
     {
         $this->session = $session;
     }
