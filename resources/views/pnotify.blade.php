@@ -1,12 +1,10 @@
 
 <script>
     jQuery(function(){
-        new PNotify({
-            type: '{{ $type }}',
-            @if (!empty($title))
-                title: '{{ $title }}',
-            @endif
-            text: '{{ $message }}'
-        });
+        @if (!empty($title))
+            new PNotify({!! json_encode(['type' => $type, 'text' => $message, 'title' => $title]) !!});
+        @else
+            new PNotify({!! json_encode(['type' => $type, 'text' => $message]) !!});
+        @endif
     });
 </script>
