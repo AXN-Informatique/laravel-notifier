@@ -1,13 +1,15 @@
 {
-    "name" : "axn/laravel-notifier",
-    "minimum-stability" : "stable",
-    "require" : {
-        "illuminate/support" : "~5.0",
-        "illuminate/session" : "~5.0"
-    },
-    "autoload" : {
-        "psr-4" : {
-            "Axn\\LaravelNotifier\\" : "src/"
-        }
-    }
+	"name" : "axn/laravel-notifier",
+	"minimum-stability" : "stable",
+	"require" : {
+		"illuminate/support" : "~5.0",
+		"illuminate/session" : "~5.0"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Axn\\LaravelNotifier\\" : "src/"
+		}
+	},
+	"description" : "Notifications pour Laravel 5",
+	"homepage" : "https://bitbucket.org/axn/laravel-notifier"
 }

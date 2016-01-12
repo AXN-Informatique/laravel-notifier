@@ -1,5 +1,10 @@
 # Changelog for Laravel Notifier
 
+1.0.3
+-----
+
+- Complétion composer.json
+
 1.0.2
 -----
 
