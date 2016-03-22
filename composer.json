@@ -1,5 +1,5 @@
 {
-    "name" : "axn/laravel-notifier"
+    "name" : "axn/laravel-notifier",
     "description" : "Notifications pour Laravel 5",
     "homepage" : "https://bitbucket.org/axn/laravel-notifier",
     "support" : {
@@ -11,7 +11,6 @@
         }
     ],
     "license" : "MIT",
-    "minimum-stability" : "stable",
     "require" : {
         "illuminate/support" : "~5.0",
         "illuminate/session" : "~5.0"
@@ -20,5 +19,5 @@
         "psr-4" : {
             "Axn\\LaravelNotifier\\" : "src/"
         }
-    },
+    }
 }
