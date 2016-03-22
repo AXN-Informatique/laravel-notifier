@@ -1,15 +1,24 @@
 {
-	"name" : "axn/laravel-notifier",
-	"minimum-stability" : "stable",
-	"require" : {
-		"illuminate/support" : "~5.0",
-		"illuminate/session" : "~5.0"
-	},
-	"autoload" : {
-		"psr-4" : {
-			"Axn\\LaravelNotifier\\" : "src/"
-		}
-	},
-	"description" : "Notifications pour Laravel 5",
-	"homepage" : "https://bitbucket.org/axn/laravel-notifier"
+    "name" : "axn/laravel-notifier"
+    "description" : "Notifications pour Laravel 5",
+    "homepage" : "https://bitbucket.org/axn/laravel-notifier",
+    "support" : {
+        "issues" : "https://bitbucket.org/axn/laravel-notifier/issues?status=new&status=open"
+    },
+    "authors" : [{
+            "name" : "AXN Informatique",
+            "email" : "developpement@axn.fr"
+        }
+    ],
+    "license" : "MIT",
+    "minimum-stability" : "stable",
+    "require" : {
+        "illuminate/support" : "~5.0",
+        "illuminate/session" : "~5.0"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Axn\\LaravelNotifier\\" : "src/"
+        }
+    },
 }

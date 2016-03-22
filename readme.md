@@ -10,31 +10,13 @@ Ce package simplifie l'utilisation des notifications dans Laravel.
 
 ## Installation
 
-Requérir ce paquet dans votre composer.json :
+Inclure le package avec Composer :
 
 ```
-    "require" : {
-        "axn/laravel-notifier" : "~1.0.0"
-    }
+composer require axn/laravel-notifier
 ```
 
-Ajouter le dépôt privé à votre composer.json :
-
-```
-    "repositories" : [{
-            "type" : "vcs",
-            "url" : "git@bitbucket.org:axn/laravel-notifier.git"
-        }
-    ]
-```
-
-Vous aurez besoin d'une clé SSH pour exécuter la commande suivante :
-
-```
-composer update
-```
-
-Après la mise à jour composer, ajouter le service provider au tableau des providers dans `config/app.php` :
+Ajouter le service provider au tableau des providers dans `config/app.php` :
 
 ```
 'Axn\LaravelNotifier\ServiceProvider',
