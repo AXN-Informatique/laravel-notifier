@@ -12,19 +12,19 @@ Ce package simplifie l'utilisation des notifications dans Laravel.
 
 Inclure le package avec Composer :
 
-```
+```sh
 composer require axn/laravel-notifier
 ```
 
 Ajouter le service provider au tableau des providers dans `config/app.php` :
 
-```
+```php
 'Axn\LaravelNotifier\ServiceProvider',
 ```
 
 Ajouter la façade au tableau des façades dans `config/app.php` :
 
-```
+```php
 'Notifier' => 'Axn\LaravelNotifier\Facade',
 ```
 
@@ -32,7 +32,7 @@ Ajouter la façade au tableau des façades dans `config/app.php` :
 
 Pour ajouter des notifications flash, utiliser les méthodes suivantes :
 
-```
+```php
 Notifier::success("Un message");
 
 Notifier::info("Un message");
@@ -44,13 +44,13 @@ Notifier::error("Un message");
 
 Et pour afficher ces notifications flash :
 
-```
+```php
 Notifier::showFlash('notifier::bootstrap3');
 ```
 
 Si vous souhaitez afficher directement des notifications :
 
-```
+```php
 Notifier::showSuccess('notifier::bootstrap3', "Un message");
 
 Notifier::showInfo('notifier::bootstrap3', "Un message");
@@ -71,7 +71,7 @@ pour effectuer le rendu de la notification. Il y a actuellement trois templates 
 
 Copier les fichiers de vues du package vers le dossier de vues de l'application via la commande :
 
-```
+```sh
 php artisan vendor:publish
 ```
 
@@ -79,6 +79,6 @@ Et y effectuer les modification souhaitées.
 
 Vous pouvez aussi créer vos propres templates. Exemple :
 
-```
+```php
 Notifier::showFlash('nom-de-la-vue');
 ```

@@ -1,9 +1,9 @@
 {
     "name" : "axn/laravel-notifier",
-    "description" : "Notifications pour Laravel 5",
-    "homepage" : "https://bitbucket.org/axn/laravel-notifier",
+    "description" : "Alerts/notifications for Laravel 5.",
+    "homepage" : "https://github.com/AXN-Informatique/laravel-notifier",
     "support" : {
-        "issues" : "https://bitbucket.org/axn/laravel-notifier/issues?status=new&status=open"
+        "issues" : "https://github.com/AXN-Informatique/laravel-notifier/issues"
     },
     "authors" : [{
             "name" : "AXN Informatique",
