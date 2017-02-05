@@ -1,6 +1,6 @@
 {
     "name" : "axn/laravel-notifier",
-    "description" : "Alerts/notifications for Laravel 5.",
+    "description" : "Alerts/notifications for Laravel 5.4",
     "homepage" : "https://github.com/AXN-Informatique/laravel-notifier",
     "support" : {
         "issues" : "https://github.com/AXN-Informatique/laravel-notifier/issues"
@@ -12,8 +12,8 @@
     ],
     "license" : "MIT",
     "require" : {
-        "illuminate/support" : "~5.0",
-        "illuminate/session" : "~5.0"
+        "illuminate/support" : "5.4.*",
+        "illuminate/session" : "5.4.*"
     },
     "autoload" : {
         "psr-4" : {

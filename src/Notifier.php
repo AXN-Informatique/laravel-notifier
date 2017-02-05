@@ -2,7 +2,7 @@
 
 namespace Axn\LaravelNotifier;
 
-use Illuminate\Session\SessionInterface;
+use Illuminate\Contracts\Session\Session as SessionInterface;
 
 class Notifier implements Contract
 {
