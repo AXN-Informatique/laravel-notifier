@@ -23,10 +23,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "forxer\\LaravelNotifier\\ServiceProvider"
+                "Axn\\LaravelNotifier\\ServiceProvider"
             ],
             "aliases":{
-                "Gravatar": "forxer\\LaravelNotifier\\Facade"
+                "Gravatar": "Axn\\LaravelNotifier\\Facade"
             }
         }
     }
