@@ -1,6 +1,6 @@
 {
     "name" : "axn/laravel-notifier",
-    "description" : "Alerts/notifications for Laravel 5.4",
+    "description" : "Alerts/notifications for Laravel",
     "homepage" : "https://github.com/AXN-Informatique/laravel-notifier",
     "support" : {
         "issues" : "https://github.com/AXN-Informatique/laravel-notifier/issues"
@@ -12,12 +12,22 @@
     ],
     "license" : "MIT",
     "require" : {
-        "illuminate/support" : "5.4.*",
-        "illuminate/session" : "5.4.*"
+        "illuminate/support" : "5.4.*|5.5.*",
+        "illuminate/session" : "5.4.*|5.5.*"
     },
     "autoload" : {
         "psr-4" : {
             "Axn\\LaravelNotifier\\" : "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "forxer\\LaravelNotifier\\ServiceProvider"
+            ],
+            "aliases":{
+                "Gravatar": "forxer\\LaravelNotifier\\Facade"
+            }
         }
     }
 }

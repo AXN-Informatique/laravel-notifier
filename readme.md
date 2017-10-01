@@ -16,13 +16,17 @@ Inclure le package avec Composer :
 composer require axn/laravel-notifier
 ```
 
-Ajouter le service provider au tableau des providers dans `config/app.php` :
+In Laravel 5.5 the service provider will automatically get registered.
+In older versions of the framework just add the service provider
+to the array of providers in `config/app.php`:
 
 ```php
 'Axn\LaravelNotifier\ServiceProvider',
 ```
 
-Ajouter la façade au tableau des façades dans `config/app.php` :
+In Laravel 5.5 the facade will automatically get registered.
+In older versions of the framework just add the facade
+to the array of aliases in `config/app.php`:
 
 ```php
 'Notifier' => 'Axn\LaravelNotifier\Facade',
