@@ -21,7 +21,13 @@ In older versions of the framework just add the service provider
 to the array of providers in `config/app.php`:
 
 ```php
-'Axn\LaravelNotifier\ServiceProvider',
+// config/app.php
+
+'provider' => [
+    //...
+    Axn\LaravelNotifier\ServiceProvider::class,
+    //...
+];
 ```
 
 In Laravel 5.5 the facade will automatically get registered.
@@ -29,7 +35,13 @@ In older versions of the framework just add the facade
 to the array of aliases in `config/app.php`:
 
 ```php
-'Notifier' => 'Axn\LaravelNotifier\Facade',
+// config/app.php
+
+'aliases' => [
+    //...
+    'Notifier' => Axn\LaravelNotifier\Facade::class,
+    //...
+];
 ```
 
 ## Utilisation
