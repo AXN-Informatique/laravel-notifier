@@ -77,11 +77,12 @@ Notifier::showError('notifier::bootstrap3', "Un message");
 ```
 
 Toutes les méthodes `show*` prennent en premier paramètre le template de vue à utiliser
-pour effectuer le rendu de la notification. Il y a actuellement trois templates fournis :
+pour effectuer le rendu de la notification. Il y a actuellement quatres templates fournis :
 
 - bootstrap3 *(requiert le framework CSS Bootstrap 3)*
 - bootstrap3-advanced *(requiert le framework CSS Bootstrap 3)*
-- pnotify *(requiert le plugin JS PNotify)*
+- pnotify *(requiert le plugin JS PNotify 3)*
+- pnotify4 *(requiert le plugin JS PNotify 4)*
 
 ## Personnalisation des templates
 
