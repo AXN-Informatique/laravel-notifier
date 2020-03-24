@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.7.1 (2020-03-24)
+------------------
+
+- Handle warning type in pnotify4 template
+
 2.7.0 (2020-03-05)
 ------------------
 
