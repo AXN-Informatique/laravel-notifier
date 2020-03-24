@@ -1,8 +1,8 @@
 
 <script>
     @empty ($title)
-        PNotify.{!! $type !!}({!! json_encode(['text' => $message]) !!});
+        PNotify.{!! $type === 'warning' ? 'notice' : $type !!}({!! json_encode(['text' => $message]) !!});
     @else
-        PNotify.{!! $type !!}({!! json_encode(['text' => $message, 'title' => $title]) !!});
+        PNotify.{!! $type === 'warning' ? 'notice' : $type !!}({!! json_encode(['text' => $message, 'title' => $title]) !!});
     @endif
 </script>
