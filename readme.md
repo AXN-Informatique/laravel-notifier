@@ -1,11 +1,6 @@
 # Laravel Notifier
 
-Ce package simplifie l'utilisation des notifications dans Laravel.
-
-* [Installation](#markdown-header-installation)
-* [Utilisation](#markdown-header-utilisation)
-* [Personnalisation des templates](#markdown-header-personnalisation-des-templates)
-* [changelog](changelog.md) :arrow_upper_right:
+Ce package vise à simplifier l'utilisation des notifications dans les interfaces web d'une application Laravel.
 
 
 ## Installation
@@ -46,45 +41,112 @@ to the array of aliases in `config/app.php`:
 
 ## Utilisation
 
-Pour ajouter des notifications flash, utiliser les méthodes suivantes :
+### Notifications flash
+
+Pour ajouter des notifications flash, utilisez les fonctions suivantes :
+
+- `info('message')`
+- `success('message')`
+- `warning('message')`
+- `error('message')`
+
+Soit via le helper `notifier()` :
 
 ```php
-Notifier::success("Un message");
+notifier()->info('message');
 
-Notifier::info("Un message");
+notifier()->success('message');
 
-Notifier::warning("Un message");
+notifier()->warning('message');
 
-Notifier::error("Un message");
+notifier()->error('message');
 ```
 
-Et pour afficher ces notifications flash :
+Soit via la façade :
 
 ```php
+use Axn\LaravelNotifier\Facade as Notifier;
+
+//...
+
+Notifier::info('message');
+
+Notifier::success('message');
+
+Notifier::warning('message');
+
+Notifier::error('message');
+```
+
+Et pour afficher ces notifications flash dans vos views Blade, utilisez la fonction `showFlash()` :
+
+```blade
+notifier()->showFlash('notifier::bootstrap3');
+```
+
+ou
+
+```blade
 Notifier::showFlash('notifier::bootstrap3');
 ```
 
-Si vous souhaitez afficher directement des notifications :
+L'argument de cette fonction est le template de vue à utiliser pour effectuer le rendu de la notification.
+
+
+### Notifications instantanées
+
+Si vous souhaitez afficher directement des notifications, utilisez les fonctions suivantes :
+
+- `showInfo('view', 'message')`
+- `showSuccess('view', 'message')`
+- `showWarning('view', 'message')`
+- `showError('view', 'message')`
+
+Soit via le helper `notifier()` :
 
 ```php
-Notifier::showSuccess('notifier::bootstrap3', "Un message");
+notifier()->showInfo('notifier::bootstrap3', 'message');
 
-Notifier::showInfo('notifier::bootstrap3', "Un message");
+notifier()->showSuccess('notifier::bootstrap3', 'message');
 
-Notifier::showWarning('notifier::bootstrap3', "Un message");
+notifier()->showWarning('notifier::bootstrap3', 'message');
 
-Notifier::showError('notifier::bootstrap3', "Un message");
+notifier()->showError('notifier::bootstrap3', 'message');
+```
+
+Soit via la façade :
+
+```php
+Notifier::showInfo('notifier::bootstrap3', 'message');
+
+Notifier::showSuccess('notifier::bootstrap3', 'message');
+
+Notifier::showWarning('notifier::bootstrap3', 'message');
+
+Notifier::showError('notifier::bootstrap3', 'message');
 ```
 
 Toutes les méthodes `show*` prennent en premier paramètre le template de vue à utiliser
-pour effectuer le rendu de la notification. Il y a actuellement quatres templates fournis :
+pour effectuer le rendu de la notification.
+
+
+## Templates de vues disponibles
+
+Il y a actuellement les templates de vue fournis par le package :
 
 - bootstrap3 *(requiert le framework CSS Bootstrap 3)*
 - bootstrap3-advanced *(requiert le framework CSS Bootstrap 3)*
 - pnotify *(requiert le plugin JS PNotify 3)*
 - pnotify4 *(requiert le plugin JS PNotify 4)*
 
-## Personnalisation des templates
+Selon le template utilisé des installations de dépendances peuvent êtres nécessaires.
+
+Par exemple pour les vues "Bootstrap3" il est nécessaire que vous ayez dans votre projet ce dernier.
+
+Pareil pour les vues qui utilisent pnotify ; celui-ci doit être configuré dans votre projet selon sa version.
+
+
+### Personnalisation des templates
 
 Copier les fichiers de vues du package vers le dossier de vues de l'application via la commande :
 

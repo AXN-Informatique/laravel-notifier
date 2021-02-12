@@ -18,15 +18,18 @@
     "autoload" : {
         "psr-4" : {
             "Axn\\LaravelNotifier\\" : "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
-    "extra": {
-        "laravel": {
-            "providers": [
+    "extra" : {
+        "laravel" : {
+            "providers" : [
                 "Axn\\LaravelNotifier\\ServiceProvider"
             ],
-            "aliases":{
-                "Notifier": "Axn\\LaravelNotifier\\Facade"
+            "aliases" : {
+                "Notifier" : "Axn\\LaravelNotifier\\Facade"
             }
         }
     }
