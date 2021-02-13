@@ -14,5 +14,5 @@ interface Contract
     public function showWarning($view, $message, $title = null);
     public function showError($view, $message, $title = null);
 
-    public function showFlash($view);
+    public function showFlash($view = null);
 }

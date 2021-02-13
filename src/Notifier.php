@@ -9,7 +9,7 @@ class Notifier implements Contract
     /**
      * Instance du manager de session de Laravel.
      *
-     * @var SessionManager
+     * @var SessionInterface $session
      */
     protected $session;
 
@@ -25,18 +25,6 @@ class Notifier implements Contract
     }
 
     /**
-     * Enregistre en session flash un message de type succès.
-     *
-     * @param  string      $message
-     * @param  string|null $title
-     * @return void
-     */
-    public function success($message, $title = null)
-    {
-        $this->flash('success', $message, $title);
-    }
-
-    /**
      * Enregistre en session flash un message de type information.
      *
      * @param  string      $message
@@ -46,6 +34,18 @@ class Notifier implements Contract
     public function info($message, $title = null)
     {
         $this->flash('info', $message, $title);
+    }
+
+    /**
+     * Enregistre en session flash un message de type succès.
+     *
+     * @param  string      $message
+     * @param  string|null $title
+     * @return void
+     */
+    public function success($message, $title = null)
+    {
+        $this->flash('success', $message, $title);
     }
 
     /**
@@ -130,10 +130,14 @@ class Notifier implements Contract
      * @param  string $view
      * @return string
      */
-    public function showFlash($view)
+    public function showFlash($view = null)
     {
         if (!$this->session->has('notify')) {
             return '';
+        }
+
+        if (is_null($view)) {
+            $view = config('notifier.default_view');
         }
 
         $args = ['view' => $view] + $this->session->get('notify');
