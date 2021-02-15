@@ -40,6 +40,6 @@ class ServiceProvider extends BaseServiceProvider
         // views
         $this->publishes([
             __DIR__ . '/../resources/views/' => base_path('resources/views/vendor/notifier'),
-        ]);
+        ], 'views');
     }
 }

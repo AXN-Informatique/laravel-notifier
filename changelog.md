@@ -1,11 +1,21 @@
 Changelog
 =========
 
-3.0.0 (2021-02-13)
+3.0.0 (2021-02-15)
 ------------------
 
 - **BBC** Notifier instance is now a singleton
-- **BBC** Add a configuration file
+- **BBC** Add a configuration file and set pnotify5 as default view
+- **BBC** arguments order of `show*()` methods have change (view name at last and optionnal)
+- Add new predefined views:
+  - bootstrap4
+  - bootstrap4-advanced
+  - pnotify5
+- Deprecate old predefined views:
+  - bootstrap3
+  - bootstrap3-advanced
+  - notify
+  - pnotify4
 - Add anothers conveniants helpers:
   - `notify()`
   - `notifier()` is now an alias of `notify()`
