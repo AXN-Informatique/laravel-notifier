@@ -1,10 +1,35 @@
 Changelog
 =========
 
+3.0.0 (2021-02-15)
+------------------
+
+- **BBC** Notifier instance is now a singleton
+- **BBC** Add a configuration file and set pnotify5 as default view
+- **BBC** arguments order of `show*()` methods have change (view name at last and optionnal)
+- Add new predefined views:
+  - bootstrap4
+  - bootstrap4-advanced
+  - pnotify5
+- Deprecate old predefined views:
+  - bootstrap3
+  - bootstrap3-advanced
+  - notify
+  - pnotify4
+- Add anothers conveniants helpers:
+  - `notify()`
+  - `notifier()` is now an alias of `notify()`
+  - `notify_info()` shorckut for `notify()->info()`
+  - `notify_success()` shorckut for `notify()->success()`
+  - `notify_warning()` shorckut for `notify()->warning()`
+  - `notify_error()` shorckut for `notify()->error()`
+- Complements and details documentation
+
+
 2.9.0 (2021-02-12)
 ------------------
 
-- Add helper notifier()
+- Add helper `notifier()`
 - Minors enhancements
 
 
@@ -59,25 +84,25 @@ Changelog
 2.1.2 (2017-10-02)
 ------------------
 
-- anothers typos
+- Anothers typos
 
 
 2.1.1 (2017-10-02)
 ------------------
 
-- typo
+- Typo
 
 
 2.1.0 (2017-10-01)
 ------------------
 
-- add support for Laravel 5.5
+- Add support for Laravel 5.5
 
 
 2.0.0 (2017-02-05)
 ------------------
 
-- Laravel 5.4 support
+- Add support for Laravel 5.4
 
 
 1.0.5 (2016-11-02)
@@ -96,22 +121,22 @@ Changelog
 1.0.3 (2016-01-12)
 ------------------
 
-- Complétion composer.json
+- Completion composer.json
 
 
 1.0.2 (2015-11-04)
 ------------------
 
-- Correction échappement des paramètres PNotify dans le template.
+- Correction of escaping PNotify parameters in the template
 
 
 1.0.1 (2015-10-29)
 ------------------
 
-- Ajout jQuery document ready au template PNotify
+- Added "jQuery document ready" to the PNotify template
 
 
 1.0.0 (2015-10-29)
 ------------------
 
-- Première version fonctionnelle
+- First functional version

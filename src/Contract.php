@@ -9,10 +9,10 @@ interface Contract
     public function warning($message, $title = null);
     public function error($message, $title = null);
 
-    public function showSuccess($view, $message, $title = null);
-    public function showInfo($view, $message, $title = null);
-    public function showWarning($view, $message, $title = null);
-    public function showError($view, $message, $title = null);
+    public function showSuccess($message, $title = null, $view = null);
+    public function showInfo($message, $title = null, $view = null);
+    public function showWarning($message, $title = null, $view = null);
+    public function showError($message, $title = null, $view = null);
 
-    public function showFlash($view);
+    public function showFlash($view = null);
 }

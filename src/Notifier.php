@@ -9,7 +9,7 @@ class Notifier implements Contract
     /**
      * Instance du manager de session de Laravel.
      *
-     * @var SessionManager
+     * @var SessionInterface $session
      */
     protected $session;
 
@@ -25,18 +25,6 @@ class Notifier implements Contract
     }
 
     /**
-     * Enregistre en session flash un message de type succès.
-     *
-     * @param  string      $message
-     * @param  string|null $title
-     * @return void
-     */
-    public function success($message, $title = null)
-    {
-        $this->flash('success', $message, $title);
-    }
-
-    /**
      * Enregistre en session flash un message de type information.
      *
      * @param  string      $message
@@ -46,6 +34,18 @@ class Notifier implements Contract
     public function info($message, $title = null)
     {
         $this->flash('info', $message, $title);
+    }
+
+    /**
+     * Enregistre en session flash un message de type succès.
+     *
+     * @param  string      $message
+     * @param  string|null $title
+     * @return void
+     */
+    public function success($message, $title = null)
+    {
+        $this->flash('success', $message, $title);
     }
 
     /**
@@ -75,68 +75,71 @@ class Notifier implements Contract
     /**
      * Affiche un message de type succès.
      *
-     * @param  string      $view
-     * @param  string      $message
-     * @param  string|null $title
-     * @return string
+     * @param string $message Le message à afficher
+     * @param string|null $title Un titre (null)
+     * @param string|null $view Un template de vue (null)
+     * @return \Illuminate\Contracts\View\View
      */
-    public function showSuccess($view, $message, $title = null)
+    public function showSuccess($message, $title = null, $view = null)
     {
-        return $this->show($view, 'success', $message, $title);
+        return $this->show('success', $message, $title, $view);
     }
 
     /**
      * Affiche un message de type information.
      *
-     * @param  string      $view
-     * @param  string      $message
-     * @param  string|null $title
-     * @return string
+     * @param string $message Le message à afficher
+     * @param string|null $title Un titre (null)
+     * @param string|null $view Un template de vue (null)
+     * @return \Illuminate\Contracts\View\View
      */
-    public function showInfo($view, $message, $title = null)
+    public function showInfo($message, $title = null, $view = null)
     {
-        return $this->show($view, 'info', $message, $title);
+        return $this->show('info', $message, $title, $view);
     }
 
     /**
      * Affiche un message de type avertissement.
      *
-     * @param  string      $view
-     * @param  string      $message
-     * @param  string|null $title
-     * @return string
+     * @param string $message Le message à afficher
+     * @param string|null $title Un titre (null)
+     * @param string|null $view Un template de vue (null)
+     * @return \Illuminate\Contracts\View\View
      */
-    public function showWarning($view, $message, $title = null)
+    public function showWarning($message, $title = null, $view = null)
     {
-        return $this->show($view, 'warning', $message, $title);
+        return $this->show('warning', $message, $title, $view);
     }
 
     /**
      * Affiche un message de type erreur.
      *
-     * @param  string      $view
-     * @param  string      $message
-     * @param  string|null $title
-     * @return string
+     * @param string $message Le message à afficher
+     * @param string|null $title Un titre (null)
+     * @param string|null $view Un template de vue (null)
+     * @return \Illuminate\Contracts\View\View
      */
-    public function showError($view, $message, $title = null)
+    public function showError($message, $title = null, $view = null)
     {
-        return $this->show($view, 'error', $message, $title);
+        return $this->show('error', $message, $title, $view);
     }
 
     /**
      * Affiche un message enregistré en session flash.
      *
-     * @param  string $view
+     * @param  string|null $view
      * @return string
      */
-    public function showFlash($view)
+    public function showFlash($view = null)
     {
         if (!$this->session->has('notify')) {
-            return '';
+            return;
         }
 
-        $args = ['view' => $view] + $this->session->get('notify');
+        $args = array_merge(
+            $this->session->get('notify'),
+            ['view' => $view ?? config('notifier.default_view')]
+        );
 
         return call_user_func_array([$this, 'show'], $args);
     }
@@ -157,13 +160,16 @@ class Notifier implements Contract
     /**
      * Affiche un message.
      *
-     * @param  string      $type
-     * @param  string      $message
-     * @param  string|null $title
-     * @return string
+     * @param string $message Le message à afficher
+     * @param string|null $title Un titre (null)
+     * @param string|null $view Un template de vue (null)
+     * @return \Illuminate\Contracts\View\View
      */
-    protected function show($view, $type, $message, $title)
+    protected function show($type, $message, $title = null, $view = null)
     {
-        return view($view, compact('type', 'message', 'title'));
+        return view(
+            $view ?? config('notifier.default_view'),
+            compact('type', 'message', 'title')
+        );
     }
 }
