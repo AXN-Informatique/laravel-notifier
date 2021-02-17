@@ -230,3 +230,58 @@ Notifier::showFlash('nom-de-la-vue');
 ```
 
 Ou la définissez la dans le fichier de configuration du package.
+
+### pnotify5
+
+Ci-dessous un exemple d'installation, pour plus de détail veuillez vous référer à la documentation du package https://github.com/sciactive/pnotify
+
+Installation :
+
+```sh
+npm install --save-dev pnotify
+```
+
+Ajoutez les CSS, par exemple :
+
+```scss
+// PNotify
+@import '~@pnotify/core/dist/PNotify.css';
+@import '~@pnotify/mobile/dist/PNotifyMobile.css';
+@import '~@pnotify/bootstrap4/dist/PNotifyBootstrap4.css';
+```
+
+Chargez les modules, par exemple :
+
+```javascript
+// PNotify
+window.PNotify = require('@pnotify/core');
+window.PNotifyAnimate = require('@pnotify/animate');
+window.PNotifyMobile = require('@pnotify/mobile');
+window.PNotifyBootstrap4 = require('@pnotify/bootstrap4');
+window.PNotifyFontAwesome5Fix = require('@pnotify/font-awesome5-fix');
+window.PNotifyFontAwesome5 = require('@pnotify/font-awesome5');
+```
+
+Et une configuration par défaut, par exemple :
+
+```javascript
+PNotify.defaultStack.close(true);
+PNotify.defaultStack.maxOpen = Infinity;
+PNotify.defaultStack.modal = false;
+
+PNotify.defaults.animateSpeed = 'slow';
+PNotify.defaults.delay = 5000;
+PNotify.defaults.titleTrusted = true;
+PNotify.defaults.textTrusted = true;
+
+PNotify.defaults.styling = 'bootstrap4';
+PNotify.defaults.icons = 'fontawesome5';
+
+PNotify.defaultModules.set(PNotifyMobile, {});
+PNotify.defaultModules.set(PNotifyAnimate, {
+    inClass: 'bounceInDown',
+    outClass: 'bounceOut'
+});
+PNotify.defaultModules.set(PNotifyBootstrap4, {});
+PNotify.defaultModules.set(PNotifyFontAwesome5, {});
+```
