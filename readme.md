@@ -118,7 +118,7 @@ Cet appel doit être placé selon le template de vue utilisé (voir plus bas).
 
 Par exemple avec un template Bootstrap vous allez le placer là où vous voulez l'afficher ; par contre avec un template PNotify vous allez le placer dans les scripts.
 
-Par défaut le template de vue utilisé est celui du fichier de configuration mais vous pouvez choisir la vue à utiliser pour effectuer le rendu de la notification :
+Par défaut le template de vue utilisé est **celui du fichier de configuration** mais vous pouvez choisir la vue à utiliser pour effectuer le rendu de la notification :
 
 ```blade
 notify()->showFlash('notifier::bootstrap3');
@@ -162,9 +162,12 @@ Notifier::showWarning('message');
 Notifier::showError('message');
 ```
 
-Toutes les méthodes `show*` prennent en premier paramètre le template de vue à utiliser
+Toutes ces méthodes `show*` prennent en deuxième paramètre le template de vue à utiliser
 pour effectuer le rendu de la notification.
 
+```php
+notify()->showInfo('message', 'notifier::bootstrap3');
+```
 
 ## Configuration
 
