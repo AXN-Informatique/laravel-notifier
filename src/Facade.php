@@ -8,6 +8,6 @@ class Facade extends BaseFacade
 {
     public static function getFacadeAccessor()
     {
-        return 'Axn\LaravelNotifier\Contract';
+        return Contract::class;
     }
 }
