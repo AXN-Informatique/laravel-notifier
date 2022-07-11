@@ -16,7 +16,7 @@ return [
     | - 'notifier::pnotify' pnotify (requiert PNotify 3) deprecated
     | - 'notifier::pnotify4' pnotify4 (requiert PNotify 4) deprecated
     | - 'notifier::pnotify5' pnotify5 (requiert PNotify 5)
-    | - 'notifier::sweetalert2' sweetalert2 (requiert SweetAlert 2) incomming
+    | - 'notifier::sweetalert2' sweetalert2 (requiert SweetAlert 2)
     | - 'custom-vue' your cutom one
     |
     */

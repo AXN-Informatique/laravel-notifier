@@ -199,7 +199,7 @@ Il y a actuellement les templates de vue fournis par le package :
 - ~~pnotify *(requiert PNotify 3)*~~ **deprecated**
 - ~~pnotify4 *(requiert PNotify 4)*~~ **deprecated**
 - pnotify5 *(requiert PNotify 5)*
-- sweetalert2 *(requiert SweetAlert 2)* **incomming**
+- sweetalert2 *(requiert SweetAlert 2)*
 
 Selon le template utilisé des installations de dépendances peuvent êtres nécessaires.
 
