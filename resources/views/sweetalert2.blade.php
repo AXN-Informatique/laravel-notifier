@@ -4,6 +4,7 @@ const Toast = Swal.mixin({
     position: 'top',
     timerProgressBar: true,
     width: '35em',
+    showConfirmButton: false,
 @if ($title)
     title: '{!! $title !!}',
 @endif
@@ -57,8 +58,7 @@ const Toast = Swal.mixin({
 
     @case ('success')
         Toast.fire({
-            timer: 7500,
-            showConfirmButton: false
+            timer: 7500
         })
     @break
 
