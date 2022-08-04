@@ -1,6 +1,49 @@
 Changelog
 =========
 
+4.0.0 (2022-07-xx)
+------------------
+
+- Added the ability to add multiple messages per request
+- Added ability to group messages into different stacks
+- Added the ability to group messages of the same type in the same notification when viewing
+- Added ability to group messages notifications based on their types when viewing
+- Added the ability to set the display order of messages types
+- Added `<x-notify />` Blade component
+- Added predefined views:
+  - `bootstrap-5`
+  - `bootstrap-5-toast`
+  - `bootstrap-5-alert`
+  - `bootstrap-5-alert-advanced`
+  - `bootstrap-4`
+- Removed support of Laravel 7 and earlier
+- Removed support of PHP 7 and earlier
+- Removed facade, use notify() helper instead
+- Removed useless contract
+- Removed helpers:
+  - `notifier()`
+  - `notify_info()`
+  - `notify_success()`
+  - `notify_warning()`
+  - `notify_error()`
+- Removed previously deprecated predefined views:
+  - `notify`
+  - `pnotify4`
+  - `bootstrap3`
+  - `bootstrap3-advanced`
+- Renamed methods:
+  - `showInfo()` into `nowInfo()`
+  - `showSuccess()` into `nowSuccess()`
+  - `showWarning()` into `nowWarning()`
+  - `showError()` into `nowError()`
+- Renamed predefined views:
+  - `pnotify5` into `pnotify-5`
+  - `bootstrap4` into `bootstrap-4-alert`
+  - `bootstrap4-advanced` into `bootstrap-4-alert-advanced`
+- Renamed `Axn\LaravelNotifier` namespace into `Axn\Notifier`
+- Renamed `Notifier` class into `Notify`
+
+
 3.2.1 (2022-07-12)
 ------------------
 
@@ -22,9 +65,9 @@ Changelog
 3.0.0 (2021-02-15)
 ------------------
 
-- **BBC** Notifier instance is now a singleton
-- **BBC** Add a configuration file and set pnotify5 as default view
-- **BBC** arguments order of `show*()` methods have change (view name at last and optionnal)
+- Notifier instance is now a singleton
+- Add a configuration file and set pnotify5 as default view
+- arguments order of `show*()` methods have change (view name at last and optionnal)
 - Add new predefined views:
   - bootstrap4
   - bootstrap4-advanced

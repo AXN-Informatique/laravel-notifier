@@ -1,0 +1,19 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+|   /!\ IMPORTANT
+|--------------------------------------------------------------------------
+|
+| Seules les valeurs modifiées doivent paraître dans ce fichier.
+|
+| Pour connaitre toutes les valeurs de configurations possibles,
+| veuillez vous référer au fichier :
+|
+| /vendor/axn/laravel-notifier/config/notifier.php
+|
+*/
+
+return [
+
+];
