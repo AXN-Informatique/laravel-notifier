@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.0.0 (2022-07-xx)
+4.0.0 (2022-08-04)
 ------------------
 
 - Added the ability to add multiple messages per request
