@@ -5,7 +5,7 @@
             'type' => $flashMessage['type'],
             'message' => $flashMessage['message'],
             'title' => $flashMessage['title'],
-            'errorsCount' => $errorsCount,
+            'errorsCount' => $flashErrorsCount,
         ])
     @endforeach
     @foreach ($nowMessages as $nowMessage)
@@ -14,7 +14,7 @@
             'type' => $nowMessage['type'],
             'message' => $nowMessage['message'],
             'title' => $nowMessage['title'],
-            'errorsCount' => $errorsCount,
+            'errorsCount' => $nowErrorsCount,
         ])
     @endforeach
 </div>

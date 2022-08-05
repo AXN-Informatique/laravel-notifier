@@ -15,7 +15,7 @@
             $aria = 'role="alert" aria-live="assertive" aria-atomic="true"';
             break;
         case 'error':
-            $delay = 15000;
+            $delay = $errorsCount ? 7500 * $errorsCount : 15000;
             $aria = 'role="alert" aria-live="assertive" aria-atomic="true"';
             break;
     }

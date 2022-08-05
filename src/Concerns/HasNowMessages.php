@@ -59,12 +59,11 @@ trait HasNowMessages
     /**
      * Retourne les messages pour la requête HTTP courante.
      *
-     * @param string $stack
      * @return Collection
      */
-    public function nowMessages(string $stack = Notify::DEFAULT_STACK): Collection
+    public function nowMessages(): Collection
     {
-        return $this->stackMessages("notify_now_$stack");
+        return $this->stackMessages("notify_now_$this->stack");
     }
 
     /**

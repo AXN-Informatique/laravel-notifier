@@ -518,7 +518,8 @@ Dans votre nouvelle vue, vous aurez alors accès aux variables publiques du comp
 
 - `$flashMessages` : la collection des messages flash
 - `$nowMessages` : la collection des messages instantanés
-- `$errorsCount` : le nombre d'erreurs (généralement celles liées à la validation)
+- `$flashErrorsCount` : le nombre d'erreurs dans les messages flash
+- `$nowErrorsCount` : le nombre d'erreurs dans les messages instantanés
 
 Il conviendra alors de boucler sur les messages :
 
@@ -557,7 +558,7 @@ Et donc dans la vue du component :
             'type' => $flashMessage['type'],
             'message' => $flashMessage['message'],
             'title' => $flashMessage['title'],
-            'errorsCount' => $errorsCount,
+            'errorsCount' => $flashErrorsCount,
         ])
     @endforeach
     @foreach ($nowMessages as $nowMessage)
@@ -566,7 +567,7 @@ Et donc dans la vue du component :
             'type' => $nowMessage['type'],
             'message' => $nowMessage['message'],
             'title' => $nowMessage['title'],
-            'errorsCount' => $errorsCount,
+            'errorsCount' => $nowErrorsCount,
         ])
     @endforeach
 </div>
@@ -580,7 +581,7 @@ Si vous n'avez pas besoin de modifier le code ci-dessus vous pouvez utiliser la 
 ])
 ```
 
-Maintenant il ne vous reste "plus qu'à implémenter" la vue du message `components/partials/custom-notify-message.blade.php`.
+Maintenant il ne vous reste "plus qu'à" implémenter la vue du message `components/partials/custom-notify-message.blade.php`.
 
 Dans celle-ci vous aurez accès aux variables suivantes :
 
@@ -588,7 +589,7 @@ Dans celle-ci vous aurez accès aux variables suivantes :
 - `$type` : le type du message ('info', 'success', 'warning' ou 'error')
 - `$message` : le contenu du message
 - `$title` : l'éventuel titre du message
-- `$errorsCount` : le nombre d'erreurs (généralement celles liées à la validation)
+- `$errorsCount` : le nombre de messages d'erreurs
 
 Et là c'est à vous de jouer :)
 

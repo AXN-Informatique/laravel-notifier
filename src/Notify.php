@@ -36,9 +36,9 @@ class Notify
     /**
      * Le nom de la stack à utiliser.
      *
-     * @var string
+     * @var string|null
      */
-    protected string $stack;
+    protected ?string $stack;
 
     /**
      * Constructeur.
@@ -57,9 +57,9 @@ class Notify
      * @param string|null $stack
      * @return self
      */
-    public function stack(?string $stack): self
+    public function stack(?string $stack = null): self
     {
-        $this->stack = $stack ?? self::DEFAULT_STACK;
+        $this->stack = $stack ?? Notify::DEFAULT_STACK;
 
         return $this;
     }

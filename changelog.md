@@ -1,6 +1,13 @@
 Changelog
 =========
 
+4.0.1 (2022-08-05)
+------------------
+
+- Fix stacks management
+- Removed buggy `$errorsCount` in favor of `$flashErrorsCount` and `$nowErrorsCount`
+
+
 4.0.0 (2022-08-04)
 ------------------
 
@@ -9,7 +16,7 @@ Changelog
 - Added the ability to group messages of the same type in the same notification when viewing
 - Added ability to group messages notifications based on their types when viewing
 - Added the ability to set the display order of messages types
-- Added `<x-notify />` Blade component
+- Added `<x-notify />` Blade component with many attributs
 - Added predefined views:
   - `bootstrap-5`
   - `bootstrap-5-toast`

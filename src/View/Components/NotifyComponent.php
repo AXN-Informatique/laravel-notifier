@@ -12,11 +12,13 @@ class NotifyComponent extends Component
 
     public Collection $nowMessages;
 
-    public int $errorsCount;
+    public int $flashErrorsCount;
+
+    public int $nowErrorsCount;
 
     private Notify $notify;
 
-    private ?string $stack;
+    private string $stack;
 
     private string $viewName;
 
@@ -29,17 +31,16 @@ class NotifyComponent extends Component
     private bool $withoutNowMessages;
 
     public function __construct(
-        Notify $notify,
-        ?string $stack = null,
+        string $stack = null,
         ?string $viewName = null,
-        ?bool $sortByType = true,
-        ?bool $groupByType = false,
-        ?bool $withoutFlashMessages = false,
-        ?bool $withoutNowMessages = false,
+        bool $sortByType = true,
+        bool $groupByType = false,
+        bool $withoutFlashMessages = false,
+        bool $withoutNowMessages = false,
     ) {
-        $this->notify = $notify;
-
         $this->stack = $stack ?? Notify::DEFAULT_STACK;
+
+        $this->notify = notify($this->stack);
 
         $config = config('notifier');
 
@@ -73,6 +74,8 @@ class NotifyComponent extends Component
             $this->groupByType = true;
         }
 
+        // les vue 'notifier::bootstrap-5' et 'notifier::bootstrap-4'
+        // ne peuvent êtres groupées par type car cela casse leur affichage
         if (in_array($this->viewName, ['notifier::bootstrap-5', 'notifier::bootstrap-4'])) {
             $this->groupByType = false;
         }
@@ -88,6 +91,12 @@ class NotifyComponent extends Component
         if ($this->withoutFlashMessages) {
             return collect();
         }
+
+        $this->flashErrorsCount = $this->notify->flashMessages($this->stack)
+            ->filter(function ($value) {
+                return $value['type'] === Notify::ERROR;
+            })
+            ->count();
 
         return $this->notify->flashMessages($this->stack)
             ->when($this->groupByType, function ($messages) {
@@ -111,6 +120,12 @@ class NotifyComponent extends Component
             return collect();
         }
 
+        $this->nowErrorsCount = $this->notify->nowMessages($this->stack)
+            ->filter(function ($value) {
+                return $value['type'] === Notify::ERROR;
+            })
+            ->count();
+
         return $this->notify->nowMessages($this->stack)
             ->when($this->groupByType, function ($messages) {
                 return $messages->groupMessagesByType();
@@ -128,8 +143,6 @@ class NotifyComponent extends Component
     private function addErrorsToNowMessage(): void
     {
         $errors = app('view')->shared('errors');
-
-        $this->errorsCount = $errors->count();
 
         if ($errors->any()) {
             foreach ($errors->all() as $error) {

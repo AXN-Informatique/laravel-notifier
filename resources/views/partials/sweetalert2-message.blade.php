@@ -71,7 +71,7 @@
 
         @case ('error')
             Toast.fire({
-                timer: {!! 10000 * $errors->count() !!}
+                timer: {!! $errorsCount ? 7500 * $errorsCount : 15000 !!}
             })
         @break
     @endswitch

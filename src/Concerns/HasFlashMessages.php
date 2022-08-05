@@ -59,12 +59,11 @@ trait HasFlashMessages
     /**
      * Retourne les messages pour la prochaine requête HTTP.
      *
-     * @param string $stack
      * @return Collection
      */
-    public function flashMessages(string $stack = Notify::DEFAULT_STACK): Collection
+    public function flashMessages(): Collection
     {
-        return $this->stackMessages("notify_flash_$stack");
+        return $this->stackMessages("notify_flash_$this->stack");
     }
 
     /**
