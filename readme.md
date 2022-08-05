@@ -93,7 +93,7 @@ class function PostController()
     public function edit(Post $post)
     {
         //...
-        notify()->info('Editing '.e($post->title).' post.');
+        notify()->nowInfo('Editing '.e($post->title).' post.');
 
         return view('post.edit');
     }
@@ -195,7 +195,7 @@ Pour afficher les messages vous devez utiliser le component Blade fournit par le
 
 Selon le template de vue utilisé vous devez placer cet appel au bon endroit.
 
-Par exemple pour un template qui utilise un composant Javascript vous devez le placer après les scrips du projet.
+Par exemple pour un template qui utilise un composant Javascript vous devez le placer après les scripts de l'application.
 
 A l'inverse si vous utilisez un template qui affiche directemet une vue vous devrez le placer là où vous souhaitez afficher les messages.
 
