@@ -29,6 +29,7 @@ Inclure le package avec Composer :
 composer require axn/laravel-notifier
 ```
 
+
 Déclaration des messages
 ------------------------
 
@@ -36,7 +37,7 @@ Le point d'entré est le helper `notify()` qui retourne une instance de `Axn\Not
 
 ### Les messages "flash"
 
-Typiquement ils permettent d'afficher des confirmations après soumission d'un formulaire.
+Typiquement ils permettent d'afficher des confirmations après soumission d'un formulaire (et donc après redirection).
 
 Cela correspond aux "Flash Data" de Laravel, mais en *typant* les messages afin de piloter plus facilement le rendu à l'écran.
 
@@ -163,11 +164,11 @@ Cela permet de mettre la logique métier dans le controller plutôt que dans les
 Pour se faire vous devez préciser le nom de la stack au helper `notify()` :
 
 ```php
-notify()->success('message', 'title'); // stack par defaut
-notify('custom-stack')->success('message', 'title'); // stack personnalisée
+notify()->success('message'); // stack par defaut
+notify('custom-stack')->success('message'); // stack personnalisée
 
-notify()->nowInfo('message', 'title'); // stack par defaut
-notify('custom-stack')->nowInfo('message', 'title'); // stack personnalisée
+notify()->nowInfo('message'); // stack par defaut
+notify('custom-stack')->nowInfo('message'); // stack personnalisée
 ```
 
 Il est possible d'ajouter plusieurs messages à une même stack personnalisée :
@@ -180,6 +181,8 @@ notify('custom-stack')
         $notify->nowWarning('message');
     });
 ```
+
+> SVP : **n'utilisez jamais le nom "custom-stack"**, c'est ici pour l'exemple, choisissez un nom **explicite** selon le contexte.
 
 
 Affichage des messages
@@ -215,7 +218,6 @@ Pour changer de template :
 ```
 
 Cela peut-être utile par exemple pour afficher un template différent selon que vous êtes sur la partie publique ou la partie admin.
-
 Ou encore un template différent selon les stacks affichées.
 
 #### Affichage d'une stack donnée
@@ -253,18 +255,20 @@ Par défaut chaque message déclenche une notification distincte. Il est possibl
 <x-notify :group-by-type="true" />
 ```
 
-Ainsi, si par exemple vous avez 3 erreurs de validation, elles apparaitrons toutes dans une seule et même notification.
+Ainsi, si par exemple vous avez 3 erreurs de validation, elles apparaitrons toutes dans une seule et même notification plutôt que dans 3 notifications distinctes.
 
 ##### Mise en forme des messages regroupés
 
-Les messages regroupés ont un format prédéfinit dans le fichier de configuration :
+Les messages regroupés ont un format prédéfinit dans le fichier de configuration du package :
 
 ```php
+//...
     'group_messages_format' => '<ul class="list-unstyled mb-0">%s</ul>',
 
     'group_title_format' => '<strong>%s&nbsp;:&nbsp;</strong>',
 
     'group_message_format' => '<li>%s%s</li>',
+//...
 ```
 
 *Notez l'utilisation des classes Bootstrap sur la liste...*
@@ -278,7 +282,7 @@ Ce qui donne par exemple :
 </ul>
 ```
 
-Il est possible de changer ces formats de façon globale en modifiant la configuration du package. Il n'est pas possible de les modifier au niveau du component.
+Il est possible de changer ces formats de façon globale en modifiant la configuration du package. Il n'est cependant pas possible de les modifier au niveau du component.
 
 #### Messages à afficher
 
@@ -492,6 +496,21 @@ PNotify.defaultModules.set(PNotifyFontAwesome5, {});
 ```
 
 L'appel du component d'affichage est à placer après l'appel des scripts de l'application.
+
+
+Personnalisation des templates
+------------------------------
+
+Il vous est possible de personnaliser les templates de vue fournis par le package en les publiants avec cette commande :
+
+```sh
+php artisan vendor:publish --tag="notifier-views"
+```
+
+Elles seront alors copiées dans `resources/views/vendor/notifier` et automatiquement chargées par l'application.
+
+**Astuce :**
+*Ne remplacez que les fichiers de vues que vous personnalisez, les autres seront chargées depuis le package.*
 
 
 Création d'un template personnalisé
