@@ -72,6 +72,7 @@ trait CanGroupMessagesByType
                 'type' => $messageType,
                 'message' => self::formatGroupedMessages($messagesType, $message),
                 'title' => null,
+                'delay' => $message['delay'],
                 'type_order' => $typeOrder,
             ];
         });
