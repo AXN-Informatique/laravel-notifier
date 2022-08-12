@@ -1,6 +1,13 @@
 Changelog
 =========
 
+4.1.1 (2022-08-12)
+------------------
+
+- Fixed `resources\views\partials\a-generic-component.blade.php` for `$delay` variable
+- Fixed grouped by type message for `$delay` variable
+
+
 4.1.0 (2022-08-12)
 ------------------
 
