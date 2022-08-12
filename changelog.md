@@ -1,6 +1,25 @@
 Changelog
 =========
 
+4.1.0 (2022-08-12)
+------------------
+
+- Added third attribute `$delay` to:
+  - `notify->info()`
+  - `notify->success()`
+  - `notify->warning()`
+  - `notify->error()`
+  - `notify->nowInfo()`
+  - `notify->nowSuccess()`
+  - `notify->nowWarning()`
+  - `notify->nowError()`
+- Added `bool $withoutViewSharedErrors = false` argument to `<x-notify />` component
+- Added an `upgrade.md` file
+- View shared errors are now added once and only for the default stack
+- Fixed `Notify::typeOrderKey(string $type): int` method
+- Fixed text color for Bootstrap toast views when no title
+
+
 4.0.2 (2022-08-05)
 ------------------
 
@@ -10,7 +29,7 @@ Changelog
 4.0.1 (2022-08-05)
 ------------------
 
-- Fix stacks management
+- Fixed stacks management
 - Removed buggy `$errorsCount` in favor of `$flashErrorsCount` and `$nowErrorsCount`
 
 
@@ -22,18 +41,25 @@ Changelog
 - Added the ability to group messages of the same type in the same notification when viewing
 - Added ability to group messages notifications based on their types when viewing
 - Added the ability to set the display order of messages types
-- Added `<x-notify />` Blade component with many attributs
+- Added `<x-notify />` Blade component with many attributs:
+  - `$stack = null`
+  - `?string $viewName = null`
+  - `bool $sortByType = true`
+  - `bool $groupByType = false`
+  - `bool $withoutFlashMessages = false`
+  - `bool $withoutNowMessages = false`
 - Added predefined views:
   - `bootstrap-5`
   - `bootstrap-5-toast`
   - `bootstrap-5-alert`
   - `bootstrap-5-alert-advanced`
   - `bootstrap-4`
+  - `bootstrap-4-toast`
 - Removed support of Laravel 7 and earlier
 - Removed support of PHP 7 and earlier
-- Removed facade, use notify() helper instead
 - Removed useless contract
-- Removed helpers:
+- Removed facade, use notify() helper instead
+- Removed helpers, use notify() helper instead:
   - `notifier()`
   - `notify_info()`
   - `notify_success()`
@@ -79,18 +105,18 @@ Changelog
 ------------------
 
 - Notifier instance is now a singleton
-- Add a configuration file and set pnotify5 as default view
-- arguments order of `show*()` methods have change (view name at last and optionnal)
-- Add new predefined views:
+- Added a configuration file and set pnotify5 as default view
+- Arguments order of `show*()` methods have change (view name at last and optionnal)
+- Added new predefined views:
   - bootstrap4
   - bootstrap4-advanced
   - pnotify5
-- Deprecate old predefined views:
+- Deprecated old predefined views:
   - bootstrap3
   - bootstrap3-advanced
   - notify
   - pnotify4
-- Add anothers conveniants helpers:
+- Added anothers conveniants helpers:
   - `notify()`
   - `notifier()` is now an alias of `notify()`
   - `notify_info()` shorckut for `notify()->info()`
@@ -103,14 +129,14 @@ Changelog
 2.9.0 (2021-02-12)
 ------------------
 
-- Add helper `notifier()`
+- Added helper `notifier()`
 - Minors enhancements
 
 
 2.8.0 (2020-09-24)
 ------------------
 
-- Add support for Laravel 8
+- Added support for Laravel 8
 
 
 2.7.1 (2020-03-24)
@@ -122,37 +148,37 @@ Changelog
 2.7.0 (2020-03-05)
 ------------------
 
-- Add support for Laravel 7
+- Added support for Laravel 7
 
 
 2.6.0 (2019-12-29)
 ------------------
 
-- Add support for Laravel 6
+- Added support for Laravel 6
 
 
 2.5.0 (2019-09-24)
 ------------------
 
-- Add PNotify 4 template
+- Added PNotify 4 template
 
 
 2.4.0 (2019-03-07)
 ------------------
 
-- Add support for Laravel 5.8
+- Added support for Laravel 5.8
 
 
 2.3.0 (2018-07-04)
 ------------------
 
-- Add Laravel 5.7.* support
+- Added Laravel 5.7.* support
 
 
 2.2.0 (2018-07-04)
 ------------------
 
-- Add Laravel 5.6.* support
+- Added Laravel 5.6.* support
 
 
 2.1.2 (2017-10-02)
@@ -170,13 +196,13 @@ Changelog
 2.1.0 (2017-10-01)
 ------------------
 
-- Add support for Laravel 5.5
+- Added support for Laravel 5.5
 
 
 2.0.0 (2017-02-05)
 ------------------
 
-- Add support for Laravel 5.4
+- Added support for Laravel 5.4
 
 
 1.0.5 (2016-11-02)

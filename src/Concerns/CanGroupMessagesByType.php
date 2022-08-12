@@ -67,14 +67,14 @@ trait CanGroupMessagesByType
         $typeOrder = $firstMessage['type_order'];
 
         $messages->each(function ($message) use (&$messagesType, $messageId, $messageType, $typeOrder) {
-                $messagesType = [
-                    'id' => $messageId,
-                    'type' => $messageType,
-                    'message' => self::formatGroupedMessages($messagesType, $message),
-                    'title' => null,
-                    'type_order' => $typeOrder,
-                ];
-            });
+            $messagesType = [
+                'id' => $messageId,
+                'type' => $messageType,
+                'message' => self::formatGroupedMessages($messagesType, $message),
+                'title' => null,
+                'type_order' => $typeOrder,
+            ];
+        });
 
         $messagesType['message'] = sprintf($messagesFormat, $messagesType['message']);
     }
@@ -89,7 +89,7 @@ trait CanGroupMessagesByType
             $messageFormat = config('notifier.group_message_format');
         }
 
-        $title = !empty($message['title']) ? sprintf($titleFormat, $message['title']) : '';
+        $title = ! empty($message['title']) ? sprintf($titleFormat, $message['title']) : '';
 
         if (empty($messagesType['message'])) {
             return sprintf($messageFormat, $title, $message['message']);

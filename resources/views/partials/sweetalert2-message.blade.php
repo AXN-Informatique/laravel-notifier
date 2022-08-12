@@ -53,25 +53,25 @@
     @switch ($type)
         @case ('info')
             Toast.fire({
-                timer: 12000
+                timer: {!! $delay !!}
             })
         @break
 
         @case ('success')
             Toast.fire({
-                timer: 7500
+                timer: {!! $delay !!}
             })
         @break
 
         @case ('warning')
             Toast.fire({
-                timer: 12000
+                timer: {!! $delay !!}
             })
         @break
 
         @case ('error')
             Toast.fire({
-                timer: {!! $errorsCount ? 7500 * $errorsCount : 15000 !!}
+                timer: {!! $delay * $errorsCount !!}
             })
         @break
     @endswitch

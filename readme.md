@@ -20,6 +20,12 @@ Les messages peuvent êtres de quatre types différents :
 - error
 
 
+Mises à jour
+------------
+
+Pour les instructions de mises à jour veuillez consulter le fichier `upgrade.md`.
+
+
 Installation
 ------------
 
@@ -119,6 +125,29 @@ Si vous devez mettre des données en provenance de la base de données ou saisie
 
 Sans cela c'est une faille de sécurité XSS.
 
+### Durée d'affichage
+
+Certain template ont une durée d'affichage avant de disparaitre.
+
+SI vous souhaitez modifier cette durée d'affichage pour un message, par exemple parce qu'il est long.
+
+Il est possible d'ajouter un troisième argument `$delay` :
+
+```php
+notify()->success('Post '.e($post->title).' successfully updated.', 'Success', 5000);
+
+notify()->nowInfo('Editing '.e($post->title).' post.', 'Information', 15000);
+```
+
+Cet argument est en millisecondes, par défaut :
+
+- info : 10000 (10s)
+- success : 5000 (5s)
+- warning : 12000 (12s)
+- error : 15000 (15s)
+
+A noter que sur les templates fournis par le package le temps d'affichage des erreurs sera multiplié par le nombre d'erreurs.
+
 
 ### Multiples messages et conditionnables
 
@@ -183,6 +212,32 @@ notify('custom-stack')
 ```
 
 > SVP : **n'utilisez jamais le nom "custom-stack"**, c'est ici pour l'exemple, choisissez un nom **explicite** selon le contexte.
+
+
+### Les "view shared errors"
+
+Il est possible d'ajouter via l'application des erreurs partagées par les vues de l'application.
+
+Typiquemenent Laravel le fait automatiquement pour les messages d'erreurs de validation.
+
+Mais il est également possible d'en ajouter par exemle via un controlleur :
+
+```php
+class function PostController()
+{
+    public function post(Request $request)
+    {
+        //...
+
+        return back()->withErrors([
+            'Une erreur',
+            'Une autres erreur',
+        ])
+    }
+}
+```
+
+Par défaut, ces messages d'erreurs partagés par toutes les vues **sont automatiquement ajoutés à la stack par défaut des messages instantanés.**
 
 
 Affichage des messages
@@ -304,9 +359,21 @@ Par exemple pour afficher un template différent selon que ce sont des messages 
 
 ```blade
 <x-notify view-name="notifier::bootstrap-5-alert" :without-flash-messages="true" />
-//...
+
 <x-notify :without-now-messages="true" />
 ```
+
+#### View shared errors
+
+Ces messages sont systématiquement affichés **dans la stack par défaut** et **dans les messages instantanés**.
+
+Si vous ne souhaitez pas afficher ces erreurs via le notifier, vous pouvez ajouter au component de la stack par défaut :
+
+```blade
+<x-notify :without-view-shared-errors="true" />
+```
+
+A vous alors de gérer l'affichage de ces messages.
 
 #### Combinaisons
 
@@ -319,7 +386,8 @@ Tous ces attributs peuvent êtres combinés selon les besoins :
     :sort-by-type="false"
     :group-by-type="true"
     :without-flash-messages="true"
-    :without-now-messages="false" />
+    :without-now-messages="false"
+    :without-view-shared-errors="true" />
 ```
 
 Templates de vues
@@ -561,6 +629,7 @@ Dans ces boucles, les variables `$flashMessage` et `$nowMessage` sont des tablea
     'type', // le type du message ('info', 'success', 'warning' ou 'error')
     'message', // le contenu du message
     'title', // l'éventuel titre du message
+    'delay', // la durée d'affichage du message
 ]
 ```
 
@@ -609,6 +678,7 @@ Dans celle-ci vous aurez accès aux variables suivantes :
 - `$message` : le contenu du message
 - `$title` : l'éventuel titre du message
 - `$errorsCount` : le nombre de messages d'erreurs
+- `$delay` : la durée d'affichage du message
 
 Et là c'est à vous de jouer :)
 

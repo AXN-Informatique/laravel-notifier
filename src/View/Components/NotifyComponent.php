@@ -30,6 +30,8 @@ class NotifyComponent extends Component
 
     private bool $withoutNowMessages;
 
+    private bool $withoutViewSharedErrors;
+
     public function __construct(
         string $stack = null,
         ?string $viewName = null,
@@ -37,6 +39,7 @@ class NotifyComponent extends Component
         bool $groupByType = false,
         bool $withoutFlashMessages = false,
         bool $withoutNowMessages = false,
+        bool $withoutViewSharedErrors = false,
     ) {
         $this->stack = $stack ?? Notify::DEFAULT_STACK;
 
@@ -53,6 +56,8 @@ class NotifyComponent extends Component
         $this->withoutFlashMessages = $withoutFlashMessages;
 
         $this->withoutNowMessages = $withoutNowMessages;
+
+        $this->withoutViewSharedErrors = $withoutViewSharedErrors;
 
         $this->setParticularViewParams();
 
@@ -114,7 +119,7 @@ class NotifyComponent extends Component
      */
     private function nowMessages(): Collection
     {
-        $this->addErrorsToNowMessage();
+        $this->addErrorsSharedFromViews();
 
         if ($this->withoutNowMessages) {
             return collect();
@@ -136,12 +141,29 @@ class NotifyComponent extends Component
     }
 
     /**
-     * Ajoute les erreurs aux messages instantanés.
+     * Ajoute les erreurs partagées par les vues.
+     *
+     * Elles ne doivent êtres ajoutées qu'à la stack par défaut
+     * et qu'une seule fois.
      *
      * @return void
      */
-    private function addErrorsToNowMessage(): void
+    private function addErrorsSharedFromViews(): void
     {
+        static $errorsAlreadyAdded = false;
+
+        if ($this->withoutViewSharedErrors) {
+            return;
+        }
+
+        if ($this->stack !== Notify::DEFAULT_STACK) {
+            return;
+        }
+
+        if ($errorsAlreadyAdded === true) {
+            return;
+        }
+
         $errors = app('view')->shared('errors');
 
         if ($errors->any()) {
@@ -149,5 +171,7 @@ class NotifyComponent extends Component
                 $this->notify->nowError($error);
             }
         }
+
+        $errorsAlreadyAdded = true;
     }
 }
