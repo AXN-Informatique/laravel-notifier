@@ -59,7 +59,7 @@ class Notify
      */
     public function stack(?string $stack = null): self
     {
-        $this->stack = $stack ?? Notify::DEFAULT_STACK;
+        $this->stack = $stack ?? self::DEFAULT_STACK;
 
         return $this;
     }
@@ -90,10 +90,10 @@ class Notify
         static $typeKeys = null;
 
         if ($typeKeys === null) {
-            $typeOrder = config('notifier.sort_type_order');
+            $typeOrders = config('notifier.sort_type_order');
 
-            foreach ($typeOrder as $key => $type) {
-                $typeKeys[$type] = $key;
+            foreach ($typeOrders as $key => $typeOrder) {
+                $typeKeys[$typeOrder] = $key;
             }
         }
 

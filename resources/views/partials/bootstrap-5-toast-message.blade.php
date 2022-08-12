@@ -2,21 +2,16 @@
     $color = $type === 'error' ? 'danger' : $type;
 
     switch ($type) {
-        case 'info':
-            $delay = 8000;
-            $aria = 'role="status" aria-live="polite" aria-atomic="true"';
-            break;
         case 'success':
-            $delay = 5000;
+        case 'info':
             $aria = 'role="status" aria-live="polite" aria-atomic="true"';
             break;
         case 'warning':
-            $delay = 10000;
             $aria = 'role="alert" aria-live="assertive" aria-atomic="true"';
             break;
         case 'error':
-            $delay = $errorsCount ? 7500 * $errorsCount : 15000;
             $aria = 'role="alert" aria-live="assertive" aria-atomic="true"';
+            $delay = $delay * $errorsCount;
             break;
     }
 @endphp
@@ -34,7 +29,7 @@
         </div>
     @else
         <div class="d-flex align-items-center">
-            <div class="toast-body">
+            <div class="toast-body text-{!! $color !!}">
                 {!! $message !!}
             </div>
             <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>

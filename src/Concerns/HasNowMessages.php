@@ -13,11 +13,12 @@ trait HasNowMessages
      *
      * @param string $message
      * @param string|null $title
+     * @param int|null $delay
      * @return Notify
      */
-    public function nowInfo(string $message, ?string $title = null): Notify
+    public function nowInfo(string $message, ?string $title = null, ?int $delay = 10000): Notify
     {
-        return $this->now(Notify::INFO, $message, $title);
+        return $this->now(Notify::INFO, $message, $title, $delay);
     }
 
     /**
@@ -25,11 +26,12 @@ trait HasNowMessages
      *
      * @param string $message
      * @param string|null $title
+     * @param int|null $delay
      * @return Notify
      */
-    public function nowSuccess(string $message, ?string $title = null): Notify
+    public function nowSuccess(string $message, ?string $title = null, ?int $delay = 5000): Notify
     {
-        return $this->now(Notify::SUCCESS, $message, $title);
+        return $this->now(Notify::SUCCESS, $message, $title, $delay);
     }
 
     /**
@@ -37,11 +39,12 @@ trait HasNowMessages
      *
      * @param string $message
      * @param string|null $title
+     * @param int|null $delay
      * @return Notify
      */
-    public function nowWarning(string $message, ?string $title = null): Notify
+    public function nowWarning(string $message, ?string $title = null, ?int $delay = 12000): Notify
     {
-        return $this->now(Notify::WARNING, $message, $title);
+        return $this->now(Notify::WARNING, $message, $title, $delay);
     }
 
     /**
@@ -49,11 +52,12 @@ trait HasNowMessages
      *
      * @param string $message
      * @param string|null $title
+     * @param int|null $delay
      * @return Notify
      */
-    public function nowError(string $message, ?string $title = null): Notify
+    public function nowError(string $message, ?string $title = null, ?int $delay = 15000): Notify
     {
-        return $this->now(Notify::ERROR, $message, $title);
+        return $this->now(Notify::ERROR, $message, $title, $delay);
     }
 
     /**
@@ -72,9 +76,10 @@ trait HasNowMessages
      * @param string $type
      * @param string $message
      * @param string|null $title
+     * @param int $delay
      * @return Notify
      */
-    private function now(string $type, string $message, ?string $title = null): Notify
+    private function now(string $type, string $message, ?string $title, int $delay): Notify
     {
         static $count = 1;
 
@@ -85,6 +90,7 @@ trait HasNowMessages
             'type' => $type,
             'message' => $message,
             'title' => $title,
+            'delay' => $delay,
             'type_order' => $this->typeOrderKey($type),
         ]);
 
