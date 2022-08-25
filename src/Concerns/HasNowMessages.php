@@ -88,8 +88,8 @@ trait HasNowMessages
         $this->session->now($id, [
             'id' => Str::slug($id),
             'type' => $type,
-            'message' => $message,
-            'title' => $title,
+            'message' => $this->escapeString($message),
+            'title' => $title ? $this->escapeString($title) : null,
             'delay' => $delay,
             'type_order' => $this->typeOrderKey($type),
         ]);
