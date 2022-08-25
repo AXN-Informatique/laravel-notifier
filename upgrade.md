@@ -1,4 +1,4 @@
-Mise à jours
+Mises à jour
 ============
 
 De la version 3.x à la version 4.x
@@ -58,7 +58,9 @@ Avec éventuellement tous les attributs dont vous avez besoin (voir le readme).
 
 ### Suppression de la façade
 
-Partout où vous avez utilisé la façade supprimée vous devez réaliser les deux opérations suivantes.
+Partout où vous avez utilisé la façade supprimée dans cette version, vous devez réaliser les deux opérations suivantes.
+
+#### 1. Remplacer l'appel des méthodes
 
 Remplacer :
 
@@ -68,16 +70,20 @@ Remplacer :
 
 Remplacer également :
 
-- `Notifier::showSuccess(` par `notify()->NowSuccess(`
-- `Notifier::showError(` par `notify()->NowError(`
+- `Notifier::showSuccess(` par `notify()->nowSuccess(`
+- `Notifier::showError(` par `notify()->nowError(`
 
-A noter que les méthodes `show*` étaient appellées dans les vues, elles doivent maintenant êtres appellées dans l'application. Mais à ma connaissance elles n'ont jamais été utilisées.
+A noter que les méthodes `show*` étaient appellées dans les vues, elles doivent maintenant êtres appellées dans l'application (voir readme). Mais à ma connaissance elles n'ont jamais été utilisées ailleurs que pour afficher les erreurs du chapitre ci-dessus.
 
-Enfin, supprimer l'appel : `use Axn\LaravelNotifier\Facade as Notifier;` ; ou utiliser PHP CS Fixer à la fin qui le fera pour vous.
+#### 2. Supprimer l'appel de la façade
+
+Supprimer partout l'appel : `use Axn\LaravelNotifier\Facade as Notifier;`
+
+Ou utiliser PHP CS Fixer à la fin qui le fera pour vous.
 
 ### Suppression des helpers
 
-Partout où vous avez utilisé les helpers supprimés vous devez les remplacer :
+Partout où vous avez utilisé les helpers supprimés dans cette version vous devez les remplacer :
 
   - `notifier()` par `notify()`
   - `notify_info()` par `notify()->info()`

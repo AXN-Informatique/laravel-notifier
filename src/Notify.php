@@ -99,4 +99,19 @@ class Notify
 
         return $typeKeys[$type];
     }
+
+    /**
+     * Cette méthode transforme certain caractères.
+     *
+     * ELle n'a rien à voir par exemple avec la méthoe e($string) de Laravel.
+     *
+     * Ceci est nécessaire notamment lorsque les chaines sont affichées dans du Javascript.
+     *
+     * @param string $string
+     * @return string
+     */
+    private function escapeString(string $string): string
+    {
+        return str_replace(['\'', '"'], ['&apos;', '&quot;'], $string);
+    }
 }
