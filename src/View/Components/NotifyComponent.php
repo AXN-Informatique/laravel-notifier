@@ -166,10 +166,12 @@ class NotifyComponent extends Component
 
         $errors = app('view')->shared('errors');
 
-        if ($errors->any()) {
-            foreach ($errors->all() as $error) {
-                $this->notify->nowError($error);
-            }
+        if (is_null($errors)) {
+            return;
+        }
+
+        foreach ($errors->all() as $error) {
+            $this->notify->nowError($error);
         }
 
         $errorsAlreadyAdded = true;
