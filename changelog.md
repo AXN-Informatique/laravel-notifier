@@ -1,6 +1,13 @@
 Changelog
 =========
 
+4.1.2 (2022-08-25)
+------------------
+
+- Correction pour les messages et titres qui contiennent les caractères `'` ou `"`
+- Indications dans le readme pour retrouver les éventuels messages
+
+
 4.1.1 (2022-08-12)
 ------------------
 
