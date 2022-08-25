@@ -125,6 +125,8 @@ Si vous devez mettre des données en provenance de la base de données ou saisie
 
 Sans cela c'est une faille de sécurité XSS.
 
+**Note :** par contre les caractères `'` et `"` sont remplacés par `&apos;` et `&quot;`
+
 ### Durée d'affichage
 
 Certain template ont une durée d'affichage avant de disparaitre.
@@ -149,7 +151,7 @@ Cet argument est en millisecondes, par défaut :
 A noter que sur les templates fournis par le package le temps d'affichage des erreurs sera multiplié par le nombre d'erreurs.
 
 
-### Multiples messages et conditionnables
+### Multiples messages et conditionnels
 
 Vous pouvez ajouter plusieurs messages à la suite, ainsi que les conditionner :
 
@@ -178,7 +180,6 @@ notify()
 ```
 
 **Note :** Tous les templates ne prennent pas en charge la possibilité d'afficher plusieurs messages de type différents.
-
 
 ### Les stacks de messages
 
@@ -237,8 +238,46 @@ class function PostController()
 }
 ```
 
-Par défaut, ces messages d'erreurs partagés par toutes les vues **sont automatiquement ajoutés à la stack par défaut des messages instantanés.**
+Par défaut, ces messages d'erreurs partagés par toutes les vues sont automatiquement ajoutés **à la stack par défaut des messages instantanés.**
 
+### Retrouver les messages
+
+Il vous est possible de retrouver les messages "flash" et/ou "instantanés" sous forme de [Collecetion Laravel](https://laravel.com/docs/collections).
+
+Retrouver les messages de la stack par défaut :
+
+```php
+notify()->flashMessages();
+
+notify()->nowMessages();
+```
+Ou ceux d'une stack personnalisée :
+
+```php
+notify('custom-stack')->flashMessages();
+
+notify('custom-stack')->nowMessages();
+```
+
+Cela peux vous permettre de manipuler le contenu des messages grâce aux collections Laravel.
+
+Ou réaliser des opérations particulières selon la présence ou non de messages.
+
+Par exemple si vous n'utilisez que des messages conditionnels et vous souhaitez déclencher une action si il y a effectivement des messages :
+
+```php
+notify()
+    ->when($condition, function($notify) {
+        $notify->warning('message');
+    })
+    ->unless($otherCondition, function($notify) {
+        $notify->error('message');
+    });
+
+if (notify()->flashMessages()->isNotEmpty()) {
+    return back();
+}
+```
 
 Affichage des messages
 ----------------------
