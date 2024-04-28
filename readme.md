@@ -721,8 +721,44 @@ Dans celle-ci vous aurez accès aux variables suivantes :
 
 Et là c'est à vous de jouer :)
 
+
 > **Mutualisons :**
 > Si vous implémentez un template réutilisable nous pourront envisager de l'intégrer au package plutôt que de le copier/coller entre différents projets.
+>
+> Ci-dessous quelques idées.
+
+### Idées de template à créer et à ajouter
+
+**Notiflix**
+
+- [Démo](https://notiflix.github.io/notify)
+- [github](https://github.com/notiflix/Notiflix/)
+
+**Toastify JS**
+
+- [Démo](https://apvarun.github.io/toastify-js/)
+- [github](https://github.com/apvarun/toastify-js)
+
+
+**JS-Snackbar**
+
+- [Démo](https://www.michaelmickelson.com/js-snackbar/)
+- [github](https://github.com/mickelsonmichael/js-snackbar)
+
+**VanillaToasts**
+
+- [Démo](https://alexkvazos.github.io/VanillaToasts/)
+- [github](https://github.com/AlexKvazos/VanillaToasts)
+
+**Notyf**
+
+- [Démo](https://carlosroso.com/notyf/)
+- [Github](https://github.com/caroso1222/notyf)
+
+**simple-notify**
+
+- [Démo](https://simple-notify.github.io/simple-notify/)
+- [Github](https://github.com/simple-notify/simple-notify)
 
 
 Configuration
