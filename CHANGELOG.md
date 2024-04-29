@@ -7,6 +7,7 @@ Changelog
 - Minimum PHP version increased to 8.2
 - Minimum version of Laravel increased to 10
 - Added support for Laravel 11
+- Removed `Collection::groupMessagesByType()` macro
 - File names in uppercase: README.md, CHANGELOG.md and UPGRADE.md
 - Added and run code quality and control tools
 

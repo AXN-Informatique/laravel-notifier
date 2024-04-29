@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Axn\Notifier\Concerns;
 
 use Axn\Notifier\Notify;

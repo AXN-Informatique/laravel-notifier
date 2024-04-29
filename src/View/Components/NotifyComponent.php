@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Axn\Notifier\View\Components;
 
 use Axn\Notifier\Notify;
@@ -88,7 +90,7 @@ class NotifyComponent extends Component
             ->count();
 
         return $this->notify->flashMessages()
-            ->when($this->groupByType, fn ($messages) => $messages->groupMessagesByType())
+            ->when($this->groupByType, fn ($messages): Collection => Notify::groupMessagesByType($messages))
             ->when($this->sortByType, fn ($messages) => $messages->sortBy('type_order'));
     }
 
@@ -108,7 +110,7 @@ class NotifyComponent extends Component
             ->count();
 
         return $this->notify->nowMessages()
-            ->when($this->groupByType, fn ($messages) => $messages->groupMessagesByType())
+            ->when($this->groupByType, fn ($messages): Collection => Notify::groupMessagesByType($messages))
             ->when($this->sortByType, fn ($messages) => $messages->sortBy('type_order'));
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Axn\Notifier\Notify;
 
 if (! function_exists('notify')) {

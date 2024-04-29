@@ -1,28 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Axn\Notifier;
 
 use Axn\Notifier\View\Components\NotifyComponent;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
 {
+    private string $basePath = '';
+
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/notifier.php', 'notifier');
+        $this->basePath = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR;
+
+        $this->mergeConfigFrom($this->basePath.'config/notifier.php', 'notifier');
 
         $this->app->bind(Notify::class, fn ($app): Notify => new Notify($app['session']));
     }
 
     public function boot(): void
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views/', 'notifier');
+        $this->loadViewsFrom($this->basePath.'resources/views/', 'notifier');
 
         Blade::component('notify', NotifyComponent::class);
-
-        Collection::macro('groupMessagesByType', fn (): Collection => Notify::groupMessagesByType($this));
 
         if ($this->app->runningInConsole()) {
             $this->configurePublishing();
@@ -36,12 +39,12 @@ class ServiceProvider extends BaseServiceProvider
     {
         // config
         $this->publishes([
-            __DIR__.'/../config/notifier.stub' => config_path('notifier.php'),
+            $this->basePath.'config/notifier.stub' => $this->app->configPath('notifier.php'),
         ], 'notifier-config');
 
         // views
         $this->publishes([
-            __DIR__.'/../resources/views/' => base_path('resources/views/vendor/notifier'),
+            $this->basePath.'resources/views/' => $this->app->resourcePath('views/vendor/notifier'),
         ], 'notifier-views');
     }
 }

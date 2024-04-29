@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Axn\Notifier;
 
 use Axn\Notifier\Concerns\CanGroupMessagesByType;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Axn\Notifier\Concerns;
 
 use Axn\Notifier\Notify;
@@ -20,13 +22,13 @@ trait CanGroupMessagesByType
         $messages
             ->groupBy('type')
             ->each(function ($messages, $type) use (&$infoMessages, &$successMessages, &$warningMessages, &$errorMessages): void {
-                if ($type == Notify::INFO) {
+                if ($type === Notify::INFO) {
                     static::groupMessagesOfSameType($messages, $infoMessages);
-                } elseif ($type == Notify::SUCCESS) {
+                } elseif ($type === Notify::SUCCESS) {
                     static::groupMessagesOfSameType($messages, $successMessages);
-                } elseif ($type == Notify::WARNING) {
+                } elseif ($type === Notify::WARNING) {
                     static::groupMessagesOfSameType($messages, $warningMessages);
-                } elseif ($type == Notify::ERROR) {
+                } elseif ($type === Notify::ERROR) {
                     static::groupMessagesOfSameType($messages, $errorMessages);
                 }
             });
