@@ -1,6 +1,16 @@
 Changelog
 =========
 
+5.0.0 (2024-04-xx)
+------------------
+
+- Minimum PHP version increased to 8.2
+- Minimum version of Laravel increased to 10
+- Added support for Laravel 11
+- File names in uppercase: README.md, CHANGELOG.md and UPGRADE.md
+- Added and run code quality and control tools
+
+
 4.2.0 (2023-02-20)
 ------------------
 
@@ -16,8 +26,8 @@ Changelog
 4.1.2 (2022-08-25)
 ------------------
 
-- Correction pour les messages et titres qui contiennent les caractères `'` ou `"`
-- Indications dans le readme pour retrouver les éventuels messages
+- Fix for messages and titles that contain the characters `'` or `"`
+- Indications in the readme to find any messages
 
 
 4.1.1 (2022-08-12)

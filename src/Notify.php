@@ -28,22 +28,18 @@ class Notify
 
     /**
      * Instance du manager de session de Laravel.
-     *
-     * @var Session
      */
     protected Session $session;
 
     /**
      * Le nom de la stack à utiliser.
-     *
-     * @var string|null
      */
     protected ?string $stack;
 
     /**
      * Constructeur.
      *
-     * @param  SessionStore $session
+     * @param  SessionStore  $session
      * @return void
      */
     public function __construct(Session $session)
@@ -53,9 +49,6 @@ class Notify
 
     /**
      * Définit la stack à utiliser.
-     *
-     * @param string|null $stack
-     * @return self
      */
     public function stack(?string $stack = null): self
     {
@@ -66,9 +59,6 @@ class Notify
 
     /**
      * Retourne les messages d'une stack donnée.
-     *
-     * @param string $stackName
-     * @return Collection
      */
     private function stackMessages(string $stackName): Collection
     {
@@ -81,9 +71,6 @@ class Notify
 
     /**
      * Retourne la clé de l'ordre d'affichage selon le type.
-     *
-     * @param string $type
-     * @return int
      */
     private function typeOrderKey(string $type): int
     {
@@ -106,9 +93,6 @@ class Notify
      * ELle n'a rien à voir par exemple avec la méthoe e($string) de Laravel.
      *
      * Ceci est nécessaire notamment lorsque les chaines sont affichées dans du Javascript.
-     *
-     * @param string $string
-     * @return string
      */
     private function escapeString(string $string): string
     {

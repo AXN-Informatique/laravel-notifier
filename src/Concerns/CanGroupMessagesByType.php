@@ -9,9 +9,6 @@ trait CanGroupMessagesByType
 {
     /**
      * Macro collection pour grouper les messages par type.
-     *
-     * @param Collection $messages
-     * @return Collection
      */
     public static function groupMessagesByType(Collection $messages): Collection
     {
@@ -35,16 +32,16 @@ trait CanGroupMessagesByType
             });
 
         return collect()
-            ->when(is_array($infoMessages), function ($groupedMessages) use ($infoMessages) {
+            ->when(\is_array($infoMessages), function ($groupedMessages) use ($infoMessages) {
                 return $groupedMessages->push($infoMessages);
             })
-            ->when(is_array($successMessages), function ($groupedMessages) use ($successMessages) {
+            ->when(\is_array($successMessages), function ($groupedMessages) use ($successMessages) {
                 return $groupedMessages->push($successMessages);
             })
-            ->when(is_array($warningMessages), function ($groupedMessages) use ($warningMessages) {
+            ->when(\is_array($warningMessages), function ($groupedMessages) use ($warningMessages) {
                 return $groupedMessages->push($warningMessages);
             })
-            ->when(is_array($errorMessages), function ($groupedMessages) use ($errorMessages) {
+            ->when(\is_array($errorMessages), function ($groupedMessages) use ($errorMessages) {
                 return $groupedMessages->push($errorMessages);
             });
     }
@@ -57,7 +54,7 @@ trait CanGroupMessagesByType
             return;
         }
 
-        if (is_null($messagesFormat)) {
+        if (\is_null($messagesFormat)) {
             $messagesFormat = config('notifier.group_messages_format');
         }
 
@@ -85,7 +82,7 @@ trait CanGroupMessagesByType
         static $titleFormat = null;
         static $messageFormat = null;
 
-        if (is_null($titleFormat)) {
+        if (\is_null($titleFormat)) {
             $titleFormat = config('notifier.group_title_format');
             $messageFormat = config('notifier.group_message_format');
         }

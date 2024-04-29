@@ -33,7 +33,7 @@ class NotifyComponent extends Component
     private bool $withoutViewSharedErrors;
 
     public function __construct(
-        string $stack = null,
+        ?string $stack = null,
         ?string $viewName = null,
         bool $sortByType = true,
         bool $groupByType = false,
@@ -81,15 +81,13 @@ class NotifyComponent extends Component
 
         // les vue 'notifier::bootstrap-5' et 'notifier::bootstrap-4'
         // ne peuvent êtres groupées par type car cela casse leur affichage
-        if (in_array($this->viewName, ['notifier::bootstrap-5', 'notifier::bootstrap-4'])) {
+        if (\in_array($this->viewName, ['notifier::bootstrap-5', 'notifier::bootstrap-4'])) {
             $this->groupByType = false;
         }
     }
 
     /**
      * Retourne les messages flash.
-     *
-     * @return Collection
      */
     private function flashMessages(): Collection
     {
@@ -114,8 +112,6 @@ class NotifyComponent extends Component
 
     /**
      * Retourne les messages instantanés.
-     *
-     * @return Collection
      */
     private function nowMessages(): Collection
     {
@@ -145,8 +141,6 @@ class NotifyComponent extends Component
      *
      * Elles ne doivent êtres ajoutées qu'à la stack par défaut
      * et qu'une seule fois.
-     *
-     * @return void
      */
     private function addErrorsSharedFromViews(): void
     {
@@ -166,7 +160,7 @@ class NotifyComponent extends Component
 
         $errors = app('view')->shared('errors');
 
-        if (is_null($errors)) {
+        if (\is_null($errors)) {
             return;
         }
 

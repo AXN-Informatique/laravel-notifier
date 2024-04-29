@@ -23,7 +23,7 @@ Les messages peuvent êtres de quatre types différents :
 Mises à jour
 ------------
 
-Pour les instructions de mises à jour veuillez consulter le fichier `upgrade.md`.
+Pour les instructions de mises à jour veuillez consulter le fichier `UPGRADE.md`.
 
 
 Installation

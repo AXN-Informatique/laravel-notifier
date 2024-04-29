@@ -10,11 +10,6 @@ trait HasNowMessages
 {
     /**
      * Enregistre un message de type information pour la requête HTTP courante.
-     *
-     * @param string $message
-     * @param string|null $title
-     * @param int|null $delay
-     * @return Notify
      */
     public function nowInfo(string $message, ?string $title = null, ?int $delay = 10000): Notify
     {
@@ -23,11 +18,6 @@ trait HasNowMessages
 
     /**
      * Enregistre un message de type succès pour la requête HTTP courante.
-     *
-     * @param string $message
-     * @param string|null $title
-     * @param int|null $delay
-     * @return Notify
      */
     public function nowSuccess(string $message, ?string $title = null, ?int $delay = 5000): Notify
     {
@@ -36,11 +26,6 @@ trait HasNowMessages
 
     /**
      * Enregistre un message de type avertissement pour la requête HTTP courante.
-     *
-     * @param string $message
-     * @param string|null $title
-     * @param int|null $delay
-     * @return Notify
      */
     public function nowWarning(string $message, ?string $title = null, ?int $delay = 12000): Notify
     {
@@ -49,11 +34,6 @@ trait HasNowMessages
 
     /**
      * Enregistre un message de type erreur pour la requête HTTP courante.
-     *
-     * @param string $message
-     * @param string|null $title
-     * @param int|null $delay
-     * @return Notify
      */
     public function nowError(string $message, ?string $title = null, ?int $delay = 15000): Notify
     {
@@ -62,8 +42,6 @@ trait HasNowMessages
 
     /**
      * Retourne les messages pour la requête HTTP courante.
-     *
-     * @return Collection
      */
     public function nowMessages(): Collection
     {
@@ -72,12 +50,6 @@ trait HasNowMessages
 
     /**
      * Enregistre un message pour la requête HTTP courante.
-     *
-     * @param string $type
-     * @param string $message
-     * @param string|null $title
-     * @param int $delay
-     * @return Notify
      */
     private function now(string $type, string $message, ?string $title, int $delay): Notify
     {
