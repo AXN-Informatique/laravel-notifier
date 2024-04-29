@@ -45,7 +45,7 @@ trait HasNowMessages
      */
     public function nowMessages(): Collection
     {
-        return $this->stackMessages("notify_now_$this->stack");
+        return $this->stackMessages('notify_now_'.$this->stack);
     }
 
     /**
@@ -55,7 +55,7 @@ trait HasNowMessages
     {
         static $count = 1;
 
-        $id = "notify_now_$this->stack.".$count++;
+        $id = 'notify_now_'.$this->stack.'.'.$count++;
 
         $this->session->now($id, [
             'id' => Str::slug($id),

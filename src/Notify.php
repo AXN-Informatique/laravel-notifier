@@ -96,6 +96,6 @@ class Notify
      */
     private function escapeString(string $string): string
     {
-        return str_replace(['\'', '"'], ['&apos;', '&quot;'], $string);
+        return str_replace(["'", '"'], ['&apos;', '&quot;'], $string);
     }
 }

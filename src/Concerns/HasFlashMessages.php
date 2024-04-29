@@ -45,7 +45,7 @@ trait HasFlashMessages
      */
     public function flashMessages(): Collection
     {
-        return $this->stackMessages("notify_flash_$this->stack");
+        return $this->stackMessages('notify_flash_'.$this->stack);
     }
 
     /**
@@ -55,7 +55,7 @@ trait HasFlashMessages
     {
         static $count = 1;
 
-        $id = "notify_flash_$this->stack.".$count++;
+        $id = 'notify_flash_'.$this->stack.'.'.$count++;
 
         $this->session->flash($id, [
             'id' => Str::slug($id),

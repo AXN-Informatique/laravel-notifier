@@ -79,7 +79,7 @@ trait CanGroupMessagesByType
             $messageFormat = config('notifier.group_message_format');
         }
 
-        $title = ! empty($message['title']) ? sprintf($titleFormat, $message['title']) : '';
+        $title = empty($message['title']) ? '' : sprintf($titleFormat, $message['title']);
 
         if (empty($messagesType['message'])) {
             return sprintf($messageFormat, $title, $message['message']);
