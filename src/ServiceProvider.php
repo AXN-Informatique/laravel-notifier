@@ -9,24 +9,20 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/notifier.php', 'notifier');
 
-        $this->app->bind(Notify::class, function ($app) {
-            return new Notify($app['session']);
-        });
+        $this->app->bind(Notify::class, fn ($app): Notify => new Notify($app['session']));
     }
 
-    public function boot()
+    public function boot(): void
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views/', 'notifier');
 
         Blade::component('notify', NotifyComponent::class);
 
-        Collection::macro('groupMessagesByType', function () {
-            return Notify::groupMessagesByType($this);
-        });
+        Collection::macro('groupMessagesByType', fn (): Collection => Notify::groupMessagesByType($this));
 
         if ($this->app->runningInConsole()) {
             $this->configurePublishing();
@@ -35,10 +31,8 @@ class ServiceProvider extends BaseServiceProvider
 
     /**
      * Configure the publishable resources offered by the package.
-     *
-     * @return void
      */
-    private function configurePublishing()
+    private function configurePublishing(): void
     {
         // config
         $this->publishes([

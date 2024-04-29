@@ -19,7 +19,7 @@ trait CanGroupMessagesByType
 
         $messages
             ->groupBy('type')
-            ->each(function ($messages, $type) use (&$infoMessages, &$successMessages, &$warningMessages, &$errorMessages) {
+            ->each(function ($messages, $type) use (&$infoMessages, &$successMessages, &$warningMessages, &$errorMessages): void {
                 if ($type == Notify::INFO) {
                     static::groupMessagesOfSameType($messages, $infoMessages);
                 } elseif ($type == Notify::SUCCESS) {
@@ -32,21 +32,13 @@ trait CanGroupMessagesByType
             });
 
         return collect()
-            ->when(\is_array($infoMessages), function ($groupedMessages) use ($infoMessages) {
-                return $groupedMessages->push($infoMessages);
-            })
-            ->when(\is_array($successMessages), function ($groupedMessages) use ($successMessages) {
-                return $groupedMessages->push($successMessages);
-            })
-            ->when(\is_array($warningMessages), function ($groupedMessages) use ($warningMessages) {
-                return $groupedMessages->push($warningMessages);
-            })
-            ->when(\is_array($errorMessages), function ($groupedMessages) use ($errorMessages) {
-                return $groupedMessages->push($errorMessages);
-            });
+            ->when(\is_array($infoMessages), fn ($groupedMessages) => $groupedMessages->push($infoMessages))
+            ->when(\is_array($successMessages), fn ($groupedMessages) => $groupedMessages->push($successMessages))
+            ->when(\is_array($warningMessages), fn ($groupedMessages) => $groupedMessages->push($warningMessages))
+            ->when(\is_array($errorMessages), fn ($groupedMessages) => $groupedMessages->push($errorMessages));
     }
 
-    private static function groupMessagesOfSameType(Collection $messages, ?array &$messagesType)
+    private static function groupMessagesOfSameType(Collection $messages, ?array &$messagesType): void
     {
         static $messagesFormat = null;
 
@@ -63,7 +55,7 @@ trait CanGroupMessagesByType
         $messageType = $firstMessage['type'];
         $typeOrder = $firstMessage['type_order'];
 
-        $messages->each(function ($message) use (&$messagesType, $messageId, $messageType, $typeOrder) {
+        $messages->each(function (array $message) use (&$messagesType, $messageId, $messageType, $typeOrder): void {
             $messagesType = [
                 'id' => $messageId,
                 'type' => $messageType,

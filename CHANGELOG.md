@@ -20,7 +20,7 @@ Changelog
 4.1.3 (2022-08-25)
 ------------------
 
-- View shared $errors might be null
+- View shared `$errors` might be null
 
 
 4.1.2 (2022-08-25)

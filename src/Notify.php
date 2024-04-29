@@ -34,7 +34,7 @@ class Notify
     /**
      * Le nom de la stack à utiliser.
      */
-    protected ?string $stack;
+    protected ?string $stack = null;
 
     /**
      * Constructeur.

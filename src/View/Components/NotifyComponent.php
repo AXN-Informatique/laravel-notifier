@@ -16,30 +16,24 @@ class NotifyComponent extends Component
 
     public int $nowErrorsCount;
 
-    private Notify $notify;
+    private readonly Notify $notify;
 
-    private string $stack;
+    private readonly string $stack;
 
-    private string $viewName;
+    private readonly string $viewName;
 
-    private bool $sortByType;
+    private readonly bool $sortByType;
 
     private bool $groupByType;
-
-    private bool $withoutFlashMessages;
-
-    private bool $withoutNowMessages;
-
-    private bool $withoutViewSharedErrors;
 
     public function __construct(
         ?string $stack = null,
         ?string $viewName = null,
         bool $sortByType = true,
         bool $groupByType = false,
-        bool $withoutFlashMessages = false,
-        bool $withoutNowMessages = false,
-        bool $withoutViewSharedErrors = false,
+        private readonly bool $withoutFlashMessages = false,
+        private readonly bool $withoutNowMessages = false,
+        private readonly bool $withoutViewSharedErrors = false,
     ) {
         $this->stack = $stack ?? Notify::DEFAULT_STACK;
 
@@ -52,12 +46,6 @@ class NotifyComponent extends Component
         $this->sortByType = $sortByType ?? $config['sort_by_type'];
 
         $this->groupByType = $groupByType ?? $config['group_by_type'];
-
-        $this->withoutFlashMessages = $withoutFlashMessages;
-
-        $this->withoutNowMessages = $withoutNowMessages;
-
-        $this->withoutViewSharedErrors = $withoutViewSharedErrors;
 
         $this->setParticularViewParams();
 
@@ -95,19 +83,13 @@ class NotifyComponent extends Component
             return collect();
         }
 
-        $this->flashErrorsCount = $this->notify->flashMessages($this->stack)
-            ->filter(function ($value) {
-                return $value['type'] === Notify::ERROR;
-            })
+        $this->flashErrorsCount = $this->notify->flashMessages()
+            ->filter(fn ($value): bool => $value['type'] === Notify::ERROR)
             ->count();
 
-        return $this->notify->flashMessages($this->stack)
-            ->when($this->groupByType, function ($messages) {
-                return $messages->groupMessagesByType();
-            })
-            ->when($this->sortByType, function ($messages) {
-                return $messages->sortBy('type_order');
-            });
+        return $this->notify->flashMessages()
+            ->when($this->groupByType, fn ($messages) => $messages->groupMessagesByType())
+            ->when($this->sortByType, fn ($messages) => $messages->sortBy('type_order'));
     }
 
     /**
@@ -121,19 +103,13 @@ class NotifyComponent extends Component
             return collect();
         }
 
-        $this->nowErrorsCount = $this->notify->nowMessages($this->stack)
-            ->filter(function ($value) {
-                return $value['type'] === Notify::ERROR;
-            })
+        $this->nowErrorsCount = $this->notify->nowMessages()
+            ->filter(fn ($value): bool => $value['type'] === Notify::ERROR)
             ->count();
 
-        return $this->notify->nowMessages($this->stack)
-            ->when($this->groupByType, function ($messages) {
-                return $messages->groupMessagesByType();
-            })
-            ->when($this->sortByType, function ($messages) {
-                return $messages->sortBy('type_order');
-            });
+        return $this->notify->nowMessages()
+            ->when($this->groupByType, fn ($messages) => $messages->groupMessagesByType())
+            ->when($this->sortByType, fn ($messages) => $messages->sortBy('type_order'));
     }
 
     /**
