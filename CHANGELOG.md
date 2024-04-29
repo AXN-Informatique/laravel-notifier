@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.0.0 (2024-04-xx)
+5.0.0 (2024-04-29)
 ------------------
 
 - Minimum PHP version increased to 8.2
