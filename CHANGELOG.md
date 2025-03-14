@@ -1,6 +1,14 @@
 Changelog
 =========
 
+6.0.0 (2025-03-14)
+------------------
+
+- Version minimum de PHP passée à 8.4
+- Version minimum de Laravel passée à 12
+- Version minimum de Rector passée à 2
+
+
 5.1.0 (2024-05-15)
 ------------------
 

@@ -29,11 +29,6 @@ class Notify
     public const DEFAULT_STACK = 'default';
 
     /**
-     * Instance du manager de session de Laravel.
-     */
-    protected Session $session;
-
-    /**
      * Le nom de la stack à utiliser.
      */
     protected ?string $stack = null;
@@ -44,10 +39,9 @@ class Notify
      * @param  SessionStore  $session
      * @return void
      */
-    public function __construct(Session $session)
-    {
-        $this->session = $session;
-    }
+    public function __construct(
+        protected Session $session,
+    ) {}
 
     /**
      * Définit la stack à utiliser.

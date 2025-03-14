@@ -63,7 +63,7 @@ trait HasFlashMessages
             'id' => Str::slug($id),
             'type' => $type,
             'message' => $this->escapeString($message),
-            'title' => $title ? $this->escapeString($title) : null,
+            'title' => $title !== null && $title !== '' && $title !== '0' ? $this->escapeString($title) : null,
             'delay' => $delay,
             'type_order' => $this->typeOrderKey($type),
         ]);
