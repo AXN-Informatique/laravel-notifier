@@ -68,7 +68,7 @@ trait CanGroupMessagesByType
             ];
         });
 
-        $messagesType['message'] = sprintf($messagesFormat, $messagesType['message']);
+        $messagesType['message'] = \sprintf($messagesFormat, $messagesType['message']);
     }
 
     private static function formatGroupedMessages(?array &$messagesType, array $message): string
@@ -81,12 +81,12 @@ trait CanGroupMessagesByType
             $messageFormat = config('notifier.group_message_format');
         }
 
-        $title = empty($message['title']) ? '' : sprintf($titleFormat, $message['title']);
+        $title = empty($message['title']) ? '' : \sprintf($titleFormat, $message['title']);
 
         if (empty($messagesType['message'])) {
-            return sprintf($messageFormat, $title, $message['message']);
+            return \sprintf($messageFormat, $title, $message['message']);
         }
 
-        return $messagesType['message'].sprintf($messageFormat, $title, $message['message']);
+        return $messagesType['message'].\sprintf($messageFormat, $title, $message['message']);
     }
 }

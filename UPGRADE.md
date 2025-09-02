@@ -1,6 +1,16 @@
 Mise à jour
 ===========
 
+De la version 5.x à la version 6.x
+----------------------------------
+
+### Pré-requis
+
+Afin de suivre les évolutions des dépendances, ce package requière maintenant au minimum **PHP 8.4** et **Laravel 12**.
+
+**Pour installer cette nouvelle version vous devez mettre à jours votre application et ses dépendance en conséquence.**
+
+
 De la version 4.x à la version 5.x
 ----------------------------------
 
