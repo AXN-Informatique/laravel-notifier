@@ -38,6 +38,5 @@
 </div>
 
 <script>
-    var toast = new bootstrap.Toast(document.getElementById('{!! $id !!}'))
-    toast.show()
+    new bootstrap.Toast(document.getElementById('{!! $id !!}')).show()
 </script>
