@@ -5,6 +5,7 @@
         timerProgressBar: true,
         width: '35em',
         showConfirmButton: false,
+        showCloseButton: true,
     @if ($title)
         title: '{!! $title !!}',
     @endif
@@ -22,6 +23,8 @@
         },
         buttonsStyling: false,
         customClass: {
+            closeButton: 'align-self-start',
+
             @switch ($type)
                 @case ('info')
                     timerProgressBar: 'bg-info',
