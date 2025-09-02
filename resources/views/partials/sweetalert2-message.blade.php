@@ -1,10 +1,11 @@
 <script>
-    const Toast = Swal.mixin({
+    Swal.mixin({
         toast: true,
         position: 'top',
         timerProgressBar: true,
         width: '35em',
         showConfirmButton: false,
+        showCloseButton: true,
     @if ($title)
         title: '{!! $title !!}',
     @endif
@@ -22,6 +23,8 @@
         },
         buttonsStyling: false,
         customClass: {
+            closeButton: 'align-self-start',
+
             @switch ($type)
                 @case ('info')
                     timerProgressBar: 'bg-info',
@@ -52,25 +55,25 @@
 
     @switch ($type)
         @case ('info')
-            Toast.fire({
+            .fire({
                 timer: {!! $delay !!}
             })
         @break
 
         @case ('success')
-            Toast.fire({
+            .fire({
                 timer: {!! $delay !!}
             })
         @break
 
         @case ('warning')
-            Toast.fire({
+            .fire({
                 timer: {!! $delay !!}
             })
         @break
 
         @case ('error')
-            Toast.fire({
+            .fire({
                 timer: {!! $delay * $errorsCount !!}
             })
         @break

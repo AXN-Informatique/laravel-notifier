@@ -13,7 +13,7 @@ trait HasFlashMessages
     /**
      * Enregistre un message de type information pour la prochaine requête HTTP.
      */
-    public function info(string $message, ?string $title = null, ?int $delay = 10000): Notify
+    public function info(string $message, ?string $title = null, ?int $delay = 8000): Notify
     {
         return $this->flash(Notify::INFO, $message, $title, $delay);
     }
@@ -21,7 +21,7 @@ trait HasFlashMessages
     /**
      * Enregistre un message de type succès pour la prochaine requête HTTP.
      */
-    public function success(string $message, ?string $title = null, ?int $delay = 5000): Notify
+    public function success(string $message, ?string $title = null, ?int $delay = 3000): Notify
     {
         return $this->flash(Notify::SUCCESS, $message, $title, $delay);
     }
@@ -29,7 +29,7 @@ trait HasFlashMessages
     /**
      * Enregistre un message de type avertissement pour la prochaine requête HTTP.
      */
-    public function warning(string $message, ?string $title = null, ?int $delay = 12000): Notify
+    public function warning(string $message, ?string $title = null, ?int $delay = 8000): Notify
     {
         return $this->flash(Notify::WARNING, $message, $title, $delay);
     }
@@ -37,7 +37,7 @@ trait HasFlashMessages
     /**
      * Enregistre un message de type erreur pour la prochaine requête HTTP.
      */
-    public function error(string $message, ?string $title = null, ?int $delay = 15000): Notify
+    public function error(string $message, ?string $title = null, ?int $delay = 8000): Notify
     {
         return $this->flash(Notify::ERROR, $message, $title, $delay);
     }
@@ -53,7 +53,7 @@ trait HasFlashMessages
     /**
      * Enregistre un message pour la prochaine requête HTTP.
      */
-    private function flash(string $type, string $message, ?string $title, int $delay): Notify
+    private function flash(string $type, string $message, ?string $title, ?int $delay): Notify
     {
         static $count = 1;
 
@@ -64,7 +64,7 @@ trait HasFlashMessages
             'type' => $type,
             'message' => $this->escapeString($message),
             'title' => $title !== null && $title !== '' && $title !== '0' ? $this->escapeString($title) : null,
-            'delay' => $delay,
+            'delay' => $delay ?? 0,
             'type_order' => $this->typeOrderKey($type),
         ]);
 
