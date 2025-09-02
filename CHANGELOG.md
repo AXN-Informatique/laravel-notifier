@@ -1,6 +1,14 @@
 Changelog
 =========
 
+5.2.0 (2025-09-02)
+------------------
+
+- Diminution des délais d'affichage par défaut des messages
+- Bouton de fermeture sur les messages SweetAlert
+- Correction erreur de redéclaration de variable JS
+
+
 5.1.0 (2024-05-15)
 ------------------
 
