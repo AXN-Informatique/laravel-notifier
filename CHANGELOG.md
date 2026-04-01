@@ -1,6 +1,16 @@
 Changelog
 =========
 
+6.2.0 (2026-04-01)
+------------------
+
+- Ajout du support de Laravel 13
+- Ajout de la documentation Savane (dossier docs/)
+- Ajout des assets Laravel Boost (guidelines et skill)
+- Ajout du fichier CLAUDE.md
+- Mise à jour des dépendances de développement
+
+
 6.1.0 (2025-09-02)
 ------------------
 
