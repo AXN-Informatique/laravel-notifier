@@ -86,13 +86,9 @@ class NotifyComponent extends Component
             return collect();
         }
 
-        $this->flashErrorsCount = $this->notify->flashMessages()
-            ->filter(fn ($value): bool => $value['type'] === Notify::ERROR)
-            ->count();
+        [$messages, $this->flashErrorsCount] = $this->processMessages($this->notify->flashMessages());
 
-        return $this->notify->flashMessages()
-            ->when($this->groupByType, fn ($messages): Collection => Notify::groupMessagesByType($messages))
-            ->when($this->sortByType, fn ($messages) => $messages->sortBy('type_order'));
+        return $messages;
     }
 
     /**
@@ -106,13 +102,27 @@ class NotifyComponent extends Component
             return collect();
         }
 
-        $this->nowErrorsCount = $this->notify->nowMessages()
+        [$messages, $this->nowErrorsCount] = $this->processMessages($this->notify->nowMessages());
+
+        return $messages;
+    }
+
+    /**
+     * Compte les erreurs et applique le groupement/tri sur une collection de messages.
+     *
+     * @return array{Collection, int}
+     */
+    private function processMessages(Collection $messages): array
+    {
+        $errorsCount = $messages
             ->filter(fn ($value): bool => $value['type'] === Notify::ERROR)
             ->count();
 
-        return $this->notify->nowMessages()
+        $processed = $messages
             ->when($this->groupByType, fn ($messages): Collection => Notify::groupMessagesByType($messages))
             ->when($this->sortByType, fn ($messages) => $messages->sortBy('type_order'));
+
+        return [$processed, $errorsCount];
     }
 
     /**
