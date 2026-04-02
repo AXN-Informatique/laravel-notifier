@@ -119,13 +119,25 @@ notify()->nowInfo('Editing '.e($post->title).' post.', 'Information');
 
 ### Sécurité et prévention des attaques XSS
 
-Afin de permettre de mettre du HTML dans les messages, les variables `$message` et `$title` ne sont **PAS échapées** dans les templates.
+> **⚠️ Important :** les variables `$message` et `$title` sont rendues en **HTML brut** (`{!! !!}`) dans tous les templates fournis par le package. Cela signifie que le HTML est interprété tel quel par le navigateur.
 
-Si vous devez mettre des données en provenance de la base de données ou saisies par les utilisateurs vous devez les échapper comme dans les exemples ci-dessus avec le helper `e($string)`.
+Ce choix est volontaire afin de permettre de mettre du HTML dans les messages (par exemple des liens, du gras, des listes, etc.) et notamment pour le regroupement des messages par type qui génère du HTML (`<ul>`, `<li>`, `<strong>`).
 
-Sans cela c'est une faille de sécurité XSS.
+**Cela implique que vous êtes responsable de l'échappement des données utilisateur.**
 
-**Note :** par contre les caractères `'` et `"` sont remplacés par `&apos;` et `&quot;`
+Si vos messages contiennent des données en provenance de la base de données, de formulaires, ou de toute autre source non fiable, vous **devez** les échapper avec le helper `e()` de Laravel :
+
+```php
+// ✅ Correct : les données utilisateur sont échappées
+notify()->success('L\'article '.e($post->title).' a été mis à jour.');
+
+// ❌ Dangereux : injection XSS possible si $post->title contient du HTML/JS
+notify()->success('L\'article '.$post->title.' a été mis à jour.');
+```
+
+Sans cela, un utilisateur malveillant pourrait injecter du code JavaScript via le contenu d'un champ (attaque XSS).
+
+**Note :** les caractères `'` et `"` sont remplacés par `&apos;` et `&quot;` mais cela ne constitue pas une protection suffisante contre les attaques XSS.
 
 ### Durée d'affichage
 
