@@ -1,11 +1,8 @@
 <?php
 
 use Rector\Caching\ValueObject\Storage\FileCacheStorage;
-use Rector\CodingStyle\Rector\ArrowFunction\StaticArrowFunctionRector;
-use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
-use Rector\CodingStyle\Rector\FuncCall\ArraySpreadInsteadOfArrayMergeRector;
 use Rector\Config\RectorConfig;
-use Rector\Php81\Rector\Array_\FirstClassCallableRector;
+use Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector;
 use RectorLaravel\Rector\Class_\UnifyModelDatesWithCastsRector;
 use RectorLaravel\Rector\FuncCall\RemoveDumpDataDeadCodeRector;
 use RectorLaravel\Rector\MethodCall\EloquentWhereRelationTypeHintingParameterRector;
@@ -34,23 +31,17 @@ return RectorConfig::configure()
     ])
 
     // Up from PHP X.x to 8.4
-    // ->withPhpSets()
+    ->withPhpSets()
 
     // only PHP 8.4
-    ->withPhpSets(php84: true)
+    // ->withPhpSets(php84: true)
 
     ->withSkip([
-        // Je trouve la lecture plus difficile avec cette syntaxe, donc je désactive (PHP 7.4/8.1)
-        // ArraySpreadInsteadOfArrayMergeRector::class,
-
-        // Ne pas changer les closure et Arrow Function en Static
-        // StaticClosureRector::class,
-        // StaticArrowFunctionRector::class,
-
-        // Désactivation de cette règle car elle
-        // transforme :     array_map('intval',
-        // en :             array_map(intval(...),
-        FirstClassCallableRector::class,
+        // Cet attribut natif PHP n'est pas très utile ;
+        // mieux vaux se baser sur de l'analyse statique
+        // En plus, lors de la rédaction de ce message,
+        // la règle fonctionne mal, elle est buguée...
+        AddOverrideAttributeToOverriddenMethodsRector::class,
     ])
     ->withRules([
         EloquentWhereRelationTypeHintingParameterRector::class,
@@ -74,5 +65,4 @@ return RectorConfig::configure()
         typeDeclarations: true,
         instanceOf: true,
         earlyReturn: true,
-        strictBooleans: true,
     );

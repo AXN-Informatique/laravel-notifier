@@ -23,7 +23,7 @@ trait CanGroupMessagesByType
 
         $messages
             ->groupBy('type')
-            ->each(function ($messages, $type) use (&$grouped): void {
+            ->each(function (Collection $messages, $type) use (&$grouped): void {
                 if (\array_key_exists($type, $grouped)) {
                     static::groupMessagesOfSameType($messages, $grouped[$type]);
                 }

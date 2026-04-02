@@ -72,7 +72,7 @@ class NotifyComponent extends Component
 
         // les vue 'notifier::bootstrap-5' et 'notifier::bootstrap-4'
         // ne peuvent êtres groupées par type car cela casse leur affichage
-        if (\in_array($this->viewName, ['notifier::bootstrap-5', 'notifier::bootstrap-4'])) {
+        if (\in_array($this->viewName, ['notifier::bootstrap-5', 'notifier::bootstrap-4'], true)) {
             $this->groupByType = false;
         }
     }
@@ -119,7 +119,7 @@ class NotifyComponent extends Component
             ->count();
 
         $processed = $messages
-            ->when($this->groupByType, fn ($messages): Collection => Notify::groupMessagesByType($messages))
+            ->when($this->groupByType, fn (Collection $messages): Collection => Notify::groupMessagesByType($messages))
             ->when($this->sortByType, fn ($messages) => $messages->sortBy('type_order'));
 
         return [$processed, $errorsCount];

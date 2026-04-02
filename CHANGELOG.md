@@ -8,6 +8,7 @@ Changelog
 - Ajout de la documentation Savane (dossier docs/)
 - Ajout des assets Laravel Boost (guidelines et skill)
 - Ajout du fichier CLAUDE.md
+- Modernisation de code base
 - Mise à jour des dépendances de développement
 
 
