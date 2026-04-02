@@ -6,7 +6,6 @@ namespace Axn\Notifier\Concerns;
 
 use Axn\Notifier\Notify;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 
 trait HasFlashMessages
 {
@@ -57,14 +56,7 @@ trait HasFlashMessages
     {
         $id = 'notify_flash_'.$this->stack.'.'.++$this->flashCount;
 
-        $this->session->flash($id, [
-            'id' => Str::slug($id),
-            'type' => $type,
-            'message' => $this->escapeString($message),
-            'title' => $title !== null && $title !== '' && $title !== '0' ? $this->escapeString($title) : null,
-            'delay' => $delay ?? 0,
-            'type_order' => $this->typeOrderKey($type),
-        ]);
+        $this->session->flash($id, $this->buildMessageData($id, $type, $message, $title, $delay));
 
         return $this;
     }

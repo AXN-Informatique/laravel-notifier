@@ -9,6 +9,7 @@ use Axn\Notifier\Concerns\HasFlashMessages;
 use Axn\Notifier\Concerns\HasNowMessages;
 use Illuminate\Session\SessionManager as Session;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 
 class Notify
@@ -93,6 +94,21 @@ class Notify
         }
 
         return $this->typeKeys[$type] ?? 0;
+    }
+
+    /**
+     * Construit le tableau de données d'un message de notification.
+     */
+    private function buildMessageData(string $id, string $type, string $message, ?string $title, ?int $delay): array
+    {
+        return [
+            'id' => Str::slug($id),
+            'type' => $type,
+            'message' => $this->escapeString($message),
+            'title' => $title !== null && $title !== '' && $title !== '0' ? $this->escapeString($title) : null,
+            'delay' => $delay ?? 0,
+            'type_order' => $this->typeOrderKey($type),
+        ];
     }
 
     /**
