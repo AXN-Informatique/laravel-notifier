@@ -55,9 +55,7 @@ trait HasFlashMessages
      */
     private function flash(string $type, string $message, ?string $title, ?int $delay): Notify
     {
-        static $count = 1;
-
-        $id = 'notify_flash_'.$this->stack.'.'.$count++;
+        $id = 'notify_flash_'.$this->stack.'.'.++$this->flashCount;
 
         $this->session->flash($id, [
             'id' => Str::slug($id),

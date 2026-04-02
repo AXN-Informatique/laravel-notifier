@@ -20,7 +20,7 @@ class ServiceProvider extends BaseServiceProvider
 
         $this->mergeConfigFrom($this->basePath.'config/notifier.php', 'notifier');
 
-        $this->app->bind(Notify::class, fn ($app): Notify => new Notify($app['session']));
+        $this->app->singleton(Notify::class, fn ($app): Notify => new Notify($app['session']));
     }
 
     public function boot(): void

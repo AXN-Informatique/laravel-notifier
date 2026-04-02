@@ -55,9 +55,7 @@ trait HasNowMessages
      */
     private function now(string $type, string $message, ?string $title, ?int $delay): Notify
     {
-        static $count = 1;
-
-        $id = 'notify_now_'.$this->stack.'.'.$count++;
+        $id = 'notify_now_'.$this->stack.'.'.++$this->nowCount;
 
         $this->session->now($id, [
             'id' => Str::slug($id),

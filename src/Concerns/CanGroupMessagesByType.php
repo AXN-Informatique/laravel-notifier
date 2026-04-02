@@ -42,15 +42,11 @@ trait CanGroupMessagesByType
 
     private static function groupMessagesOfSameType(Collection $messages, ?array &$messagesType): void
     {
-        static $messagesFormat = null;
-
         if ($messages->isEmpty()) {
             return;
         }
 
-        if (\is_null($messagesFormat)) {
-            $messagesFormat = config('notifier.group_messages_format');
-        }
+        $messagesFormat = config('notifier.group_messages_format');
 
         $firstMessage = $messages->first();
         $messageId = $firstMessage['id'];
@@ -73,13 +69,8 @@ trait CanGroupMessagesByType
 
     private static function formatGroupedMessages(?array &$messagesType, array $message): string
     {
-        static $titleFormat = null;
-        static $messageFormat = null;
-
-        if (\is_null($titleFormat)) {
-            $titleFormat = config('notifier.group_title_format');
-            $messageFormat = config('notifier.group_message_format');
-        }
+        $titleFormat = config('notifier.group_title_format');
+        $messageFormat = config('notifier.group_message_format');
 
         $title = empty($message['title']) ? '' : \sprintf($titleFormat, $message['title']);
 

@@ -34,6 +34,26 @@ class Notify
     protected ?string $stack = null;
 
     /**
+     * Compteur pour les clés de session flash.
+     */
+    private int $flashCount = 0;
+
+    /**
+     * Compteur pour les clés de session now.
+     */
+    private int $nowCount = 0;
+
+    /**
+     * Cache des clés d'ordre par type.
+     */
+    private ?array $typeKeys = null;
+
+    /**
+     * Indique si les erreurs partagées par les vues ont déjà été ajoutées.
+     */
+    public bool $errorsAlreadyAdded = false;
+
+    /**
      * Constructeur.
      *
      * @param  SessionStore  $session
@@ -70,17 +90,15 @@ class Notify
      */
     private function typeOrderKey(string $type): int
     {
-        static $typeKeys = null;
-
-        if ($typeKeys === null) {
+        if ($this->typeKeys === null) {
             $typeOrders = config('notifier.sort_type_order');
 
             foreach ($typeOrders as $key => $typeOrder) {
-                $typeKeys[$typeOrder] = $key;
+                $this->typeKeys[$typeOrder] = $key;
             }
         }
 
-        return $typeKeys[$type];
+        return $this->typeKeys[$type] ?? 0;
     }
 
     /**

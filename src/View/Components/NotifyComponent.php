@@ -122,8 +122,6 @@ class NotifyComponent extends Component
      */
     private function addErrorsSharedFromViews(): void
     {
-        static $errorsAlreadyAdded = false;
-
         if ($this->withoutViewSharedErrors) {
             return;
         }
@@ -132,7 +130,7 @@ class NotifyComponent extends Component
             return;
         }
 
-        if ($errorsAlreadyAdded === true) {
+        if ($this->notify->errorsAlreadyAdded) {
             return;
         }
 
@@ -146,6 +144,6 @@ class NotifyComponent extends Component
             $this->notify->nowError($error);
         }
 
-        $errorsAlreadyAdded = true;
+        $this->notify->errorsAlreadyAdded = true;
     }
 }
