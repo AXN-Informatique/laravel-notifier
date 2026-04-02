@@ -31,8 +31,8 @@ class NotifyComponent extends Component
     public function __construct(
         ?string $stack = null,
         ?string $viewName = null,
-        bool $sortByType = true,
-        bool $groupByType = false,
+        ?bool $sortByType = null,
+        ?bool $groupByType = null,
         private readonly bool $withoutFlashMessages = false,
         private readonly bool $withoutNowMessages = false,
         private readonly bool $withoutViewSharedErrors = false,
