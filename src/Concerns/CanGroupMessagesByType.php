@@ -29,11 +29,7 @@ trait CanGroupMessagesByType
                 }
             });
 
-        return collect()
-            ->when(\is_array($grouped[Notify::INFO]), fn ($c) => $c->push($grouped[Notify::INFO]))
-            ->when(\is_array($grouped[Notify::SUCCESS]), fn ($c) => $c->push($grouped[Notify::SUCCESS]))
-            ->when(\is_array($grouped[Notify::WARNING]), fn ($c) => $c->push($grouped[Notify::WARNING]))
-            ->when(\is_array($grouped[Notify::ERROR]), fn ($c) => $c->push($grouped[Notify::ERROR]));
+        return collect(array_filter($grouped));
     }
 
     private static function groupMessagesOfSameType(Collection $messages, ?array &$messagesType): void
