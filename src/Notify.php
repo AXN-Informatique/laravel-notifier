@@ -115,7 +115,7 @@ class Notify
             'id' => Str::slug($id),
             'type' => $type,
             'message' => $this->escapeQuotes($message),
-            'title' => $title !== null && $title !== '' && $title !== '0' ? $this->escapeQuotes($title) : null,
+            'title' => $title !== null && $title !== '' ? $this->escapeQuotes($title) : null,
             'delay' => $delay ?? 0,
             'type_order' => $this->typeOrderKey($type),
         ];
