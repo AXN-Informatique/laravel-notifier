@@ -131,7 +131,7 @@ class NotifyComponent extends Component
             return;
         }
 
-        if ($this->notify->errorsAlreadyAdded) {
+        if ($this->notify->hasErrorsBeenAdded()) {
             return;
         }
 
@@ -145,6 +145,6 @@ class NotifyComponent extends Component
             $this->notify->nowError($error);
         }
 
-        $this->notify->errorsAlreadyAdded = true;
+        $this->notify->markErrorsAsAdded();
     }
 }

@@ -52,7 +52,17 @@ class Notify
     /**
      * Indique si les erreurs partagées par les vues ont déjà été ajoutées.
      */
-    public bool $errorsAlreadyAdded = false;
+    private bool $errorsAlreadyAdded = false;
+
+    public function hasErrorsBeenAdded(): bool
+    {
+        return $this->errorsAlreadyAdded;
+    }
+
+    public function markErrorsAsAdded(): void
+    {
+        $this->errorsAlreadyAdded = true;
+    }
 
     public function __construct(
         protected Session $session,
