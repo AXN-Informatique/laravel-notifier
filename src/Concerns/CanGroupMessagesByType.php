@@ -39,17 +39,19 @@ trait CanGroupMessagesByType
         }
 
         $messagesFormat = config('notifier.group_messages_format');
+        $titleFormat = config('notifier.group_title_format');
+        $messageFormat = config('notifier.group_message_format');
 
         $firstMessage = $messages->first();
         $messageId = $firstMessage['id'];
         $messageType = $firstMessage['type'];
         $typeOrder = $firstMessage['type_order'];
 
-        $messages->each(function (array $message) use (&$messagesType, $messageId, $messageType, $typeOrder): void {
+        $messages->each(function (array $message) use (&$messagesType, $messageId, $messageType, $typeOrder, $titleFormat, $messageFormat): void {
             $messagesType = [
                 'id' => $messageId,
                 'type' => $messageType,
-                'message' => self::formatGroupedMessages($messagesType, $message),
+                'message' => self::formatGroupedMessages($messagesType, $message, $titleFormat, $messageFormat),
                 'title' => null,
                 'delay' => $message['delay'],
                 'type_order' => $typeOrder,
@@ -59,11 +61,8 @@ trait CanGroupMessagesByType
         $messagesType['message'] = \sprintf($messagesFormat, $messagesType['message']);
     }
 
-    private static function formatGroupedMessages(?array &$messagesType, array $message): string
+    private static function formatGroupedMessages(?array &$messagesType, array $message, string $titleFormat, string $messageFormat): string
     {
-        $titleFormat = config('notifier.group_title_format');
-        $messageFormat = config('notifier.group_message_format');
-
         $title = empty($message['title']) ? '' : \sprintf($titleFormat, $message['title']);
 
         if (empty($messagesType['message'])) {
