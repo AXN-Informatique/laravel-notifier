@@ -104,22 +104,23 @@ class Notify
         return [
             'id' => Str::slug($id),
             'type' => $type,
-            'message' => $this->escapeString($message),
-            'title' => $title !== null && $title !== '' && $title !== '0' ? $this->escapeString($title) : null,
+            'message' => $this->escapeQuotes($message),
+            'title' => $title !== null && $title !== '' && $title !== '0' ? $this->escapeQuotes($title) : null,
             'delay' => $delay ?? 0,
             'type_order' => $this->typeOrderKey($type),
         ];
     }
 
     /**
-     * Cette méthode transforme certain caractères.
+     * Échappe les guillemets simples et doubles pour l'affichage dans du Javascript.
      *
-     * ELle n'a rien à voir par exemple avec la méthoe e($string) de Laravel.
-     *
-     * Ceci est nécessaire notamment lorsque les chaines sont affichées dans du Javascript.
+     * N'échappe pas les autres caractères HTML (<, >, &) contrairement à e().
      */
-    private function escapeString(string $string): string
+    private function escapeQuotes(string $string): string
     {
-        return str_replace(["'", '"'], ['&apos;', '&quot;'], $string);
+        return strtr($string, [
+            "'" => '&apos;',
+            '"' => '&quot;',
+        ]);
     }
 }
