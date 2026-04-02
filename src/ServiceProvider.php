@@ -23,6 +23,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->app->singleton(Notify::class, fn ($app): Notify => new Notify($app['session']));
     }
 
+    #[Override]
     public function boot(): void
     {
         $this->loadViewsFrom($this->basePath.'resources/views/', 'notifier');

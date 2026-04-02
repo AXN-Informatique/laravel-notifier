@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Axn\Notifier\View\Components;
 
 use Axn\Notifier\Notify;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
@@ -56,7 +57,7 @@ class NotifyComponent extends Component
         $this->nowMessages = $this->nowMessages();
     }
 
-    public function render()
+    public function render(): View
     {
         return view($this->viewName);
     }

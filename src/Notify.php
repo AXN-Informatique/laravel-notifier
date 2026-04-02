@@ -18,15 +18,15 @@ class Notify
     use HasFlashMessages;
     use HasNowMessages;
 
-    public const INFO = 'info';
+    public const string INFO = 'info';
 
-    public const SUCCESS = 'success';
+    public const string SUCCESS = 'success';
 
-    public const WARNING = 'warning';
+    public const string WARNING = 'warning';
 
-    public const ERROR = 'error';
+    public const string ERROR = 'error';
 
-    public const DEFAULT_STACK = 'default';
+    public const string DEFAULT_STACK = 'default';
 
     /**
      * Le nom de la stack à utiliser.
@@ -53,12 +53,6 @@ class Notify
      */
     public bool $errorsAlreadyAdded = false;
 
-    /**
-     * Constructeur.
-     *
-     * @param  SessionStore  $session
-     * @return void
-     */
     public function __construct(
         protected Session $session,
     ) {}

@@ -14,30 +14,26 @@ trait CanGroupMessagesByType
      */
     public static function groupMessagesByType(Collection $messages): Collection
     {
-        $infoMessages = null;
-        $successMessages = null;
-        $warningMessages = null;
-        $errorMessages = null;
+        $grouped = [
+            Notify::INFO => null,
+            Notify::SUCCESS => null,
+            Notify::WARNING => null,
+            Notify::ERROR => null,
+        ];
 
         $messages
             ->groupBy('type')
-            ->each(function ($messages, $type) use (&$infoMessages, &$successMessages, &$warningMessages, &$errorMessages): void {
-                if ($type === Notify::INFO) {
-                    static::groupMessagesOfSameType($messages, $infoMessages);
-                } elseif ($type === Notify::SUCCESS) {
-                    static::groupMessagesOfSameType($messages, $successMessages);
-                } elseif ($type === Notify::WARNING) {
-                    static::groupMessagesOfSameType($messages, $warningMessages);
-                } elseif ($type === Notify::ERROR) {
-                    static::groupMessagesOfSameType($messages, $errorMessages);
+            ->each(function ($messages, $type) use (&$grouped): void {
+                if (\array_key_exists($type, $grouped)) {
+                    static::groupMessagesOfSameType($messages, $grouped[$type]);
                 }
             });
 
         return collect()
-            ->when(\is_array($infoMessages), fn ($groupedMessages) => $groupedMessages->push($infoMessages))
-            ->when(\is_array($successMessages), fn ($groupedMessages) => $groupedMessages->push($successMessages))
-            ->when(\is_array($warningMessages), fn ($groupedMessages) => $groupedMessages->push($warningMessages))
-            ->when(\is_array($errorMessages), fn ($groupedMessages) => $groupedMessages->push($errorMessages));
+            ->when(\is_array($grouped[Notify::INFO]), fn ($c) => $c->push($grouped[Notify::INFO]))
+            ->when(\is_array($grouped[Notify::SUCCESS]), fn ($c) => $c->push($grouped[Notify::SUCCESS]))
+            ->when(\is_array($grouped[Notify::WARNING]), fn ($c) => $c->push($grouped[Notify::WARNING]))
+            ->when(\is_array($grouped[Notify::ERROR]), fn ($c) => $c->push($grouped[Notify::ERROR]));
     }
 
     private static function groupMessagesOfSameType(Collection $messages, ?array &$messagesType): void
