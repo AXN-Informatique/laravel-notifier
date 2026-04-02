@@ -62,7 +62,7 @@ notify()->error('message');
 Par exemple :
 
 ```php
-class function PostController()
+class PostController
 {
     public function update(Post $post)
     {
@@ -95,7 +95,7 @@ notify()->nowError('message');
 Par exemple :
 
 ```php
-class function PostController()
+class PostController
 {
     public function edit(Post $post)
     {
@@ -143,10 +143,10 @@ notify()->nowInfo('Editing '.e($post->title).' post.', 'Information', 15000);
 
 Cet argument est en millisecondes, par défaut :
 
-- info : 10000 (10s)
-- success : 5000 (5s)
-- warning : 12000 (12s)
-- error : 15000 (15s)
+- info : 8000 (8s)
+- success : 3000 (3s)
+- warning : 8000 (8s)
+- error : 8000 (8s)
 
 A noter que sur les templates fournis par le package le temps d'affichage des erreurs sera multiplié par le nombre d'erreurs.
 
@@ -224,7 +224,7 @@ Typiquemenent Laravel le fait automatiquement pour les messages d'erreurs de val
 Mais il est également possible d'en ajouter par exemle via un controlleur :
 
 ```php
-class function PostController()
+class PostController
 {
     public function post(Request $request)
     {
@@ -242,7 +242,7 @@ Par défaut, ces messages d'erreurs partagés par toutes les vues sont automatiq
 
 ### Retrouver les messages
 
-Il vous est possible de retrouver les messages "flash" et/ou "instantanés" sous forme de [Collecetion Laravel](https://laravel.com/docs/collections).
+Il vous est possible de retrouver les messages "flash" et/ou "instantanés" sous forme de [Collection Laravel](https://laravel.com/docs/collections).
 
 Retrouver les messages de la stack par défaut :
 
@@ -507,9 +507,9 @@ L'appel du component est à placer là où vous souhaitez que les alerts apparai
 
 ### bootstrap-4-alert-advanced
 
-C'est une extension du précédent qui ajoute une icone fontawesome5 et le bouton pour fermer l'alert.
+C'est une extension du précédent qui ajoute une icone Font Awesome 5 et le bouton pour fermer l'alert.
 
-Il est donc nécessaire d'avoir dans votre projet fontawesome4 et le JS de base de Bootstrap 4.
+Il est donc nécessaire d'avoir dans votre projet Font Awesome 5 (icônes Light, `fal`) et le JS de base de Bootstrap 4.
 
 L'appel du component est à placer là où vous souhaitez que les alerts apparaissent.
 
