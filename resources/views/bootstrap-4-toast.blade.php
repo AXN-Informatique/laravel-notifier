@@ -1,5 +1,5 @@
 <div aria-live="polite" aria-atomic="true">
-    <div class="toast-container position-absolute top-0 end-0 p-3">
+    <div class="toast-container" style="position: absolute; top: 0; right: 0; padding: 1rem;">
         @foreach ($flashMessages as $flashMessage)
             @include ('notifier::partials.bootstrap-4-toast-message', [
                 'id' => $flashMessage['id'],
