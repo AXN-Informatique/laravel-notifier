@@ -7,13 +7,11 @@ namespace Axn\Notifier;
 use Axn\Notifier\View\Components\NotifyComponent;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use Override;
 
 class ServiceProvider extends BaseServiceProvider
 {
     private string $basePath = '';
 
-    #[Override]
     public function register(): void
     {
         $this->basePath = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR;
@@ -23,7 +21,6 @@ class ServiceProvider extends BaseServiceProvider
         $this->app->singleton(Notify::class, fn ($app): Notify => new Notify($app['session']));
     }
 
-    #[Override]
     public function boot(): void
     {
         $this->loadViewsFrom($this->basePath.'resources/views/', 'notifier');
