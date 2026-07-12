@@ -1,6 +1,12 @@
 Changelog
 =========
 
+6.2.1 (2026-07-12)
+------------------
+
+- Guidelines Boost réduites en pointeur + pièges critiques (détails couverts par le skill)
+
+
 6.2.0 (2026-04-02)
 ------------------
 
