@@ -60,11 +60,23 @@ class Notify
      */
     private ?WeakReference $handledErrorBag = null;
 
+    /**
+     * Indique si les erreurs de ce sac ont déjà été reprises.
+     *
+     * @internal Plomberie de NotifyComponent, hors contrat public du package :
+     *           la signature peut changer sans version majeure.
+     */
     public function hasErrorsBeenAdded(object $errorBag): bool
     {
         return $this->handledErrorBag?->get() === $errorBag;
     }
 
+    /**
+     * Retient le sac dont les erreurs viennent d'être reprises.
+     *
+     * @internal Plomberie de NotifyComponent, hors contrat public du package :
+     *           la signature peut changer sans version majeure.
+     */
     public function markErrorsAsAdded(object $errorBag): void
     {
         $this->handledErrorBag = WeakReference::create($errorBag);
