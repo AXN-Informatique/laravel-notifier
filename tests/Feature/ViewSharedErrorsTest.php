@@ -22,6 +22,18 @@ it('turns validation errors into notifications', function (): void {
     $this->get('/page')->assertSee('The name field is required.', escape: false);
 });
 
+it('turns validation errors into notifications on a process that already rendered a page', function (): void {
+    // Sous PHP-FPM le process meurt à chaque requête et ce premier appel ne
+    // change rien. Sous un serveur qui survit aux requêtes, Octane comme le
+    // serveur des tests navigateur, il pose l'état que la requête suivante
+    // rencontre : le garde-fou anti-doublon ne doit pas s'y étendre.
+    $this->get('/page')->assertOk();
+
+    $this->from('/page')->post('/form', [])->assertRedirect('/page');
+
+    $this->get('/page')->assertSee('The name field is required.', escape: false);
+});
+
 it('adds the shared errors only once when a page holds two components', function (): void {
     $this->withViewErrors(['name' => 'The name field is required.']);
 

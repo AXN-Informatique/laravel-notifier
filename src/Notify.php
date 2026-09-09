@@ -11,6 +11,7 @@ use Illuminate\Session\SessionManager as Session;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
+use WeakReference;
 
 class Notify
 {
@@ -50,18 +51,23 @@ class Notify
     private ?array $typeKeys = null;
 
     /**
-     * Indique si les erreurs partagées par les vues ont déjà été ajoutées.
+     * Le sac d'erreurs partagé dont les messages ont déjà été repris.
+     *
+     * L'identité du sac, et non un simple drapeau : ce service est un singleton,
+     * et un serveur qui survit aux requêtes (Octane) le réutilise d'une requête à
+     * l'autre. Un drapeau y resterait levé et ferait disparaître toute erreur
+     * suivante. La référence est faible, le sac appartenant à la requête.
      */
-    private bool $errorsAlreadyAdded = false;
+    private ?WeakReference $handledErrorBag = null;
 
-    public function hasErrorsBeenAdded(): bool
+    public function hasErrorsBeenAdded(object $errorBag): bool
     {
-        return $this->errorsAlreadyAdded;
+        return $this->handledErrorBag?->get() === $errorBag;
     }
 
-    public function markErrorsAsAdded(): void
+    public function markErrorsAsAdded(object $errorBag): void
     {
-        $this->errorsAlreadyAdded = true;
+        $this->handledErrorBag = WeakReference::create($errorBag);
     }
 
     public function __construct(

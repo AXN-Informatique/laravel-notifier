@@ -129,7 +129,8 @@ class NotifyComponent extends Component
      * Ajoute les erreurs partagées par les vues.
      *
      * Elles ne doivent êtres ajoutées qu'à la stack par défaut
-     * et qu'une seule fois.
+     * et qu'une seule fois par sac d'erreurs, deux composants d'une même page
+     * lisant le même sac.
      */
     private function addErrorsSharedFromViews(): void
     {
@@ -141,13 +142,13 @@ class NotifyComponent extends Component
             return;
         }
 
-        if ($this->notify->hasErrorsBeenAdded()) {
-            return;
-        }
-
         $errors = app('view')->shared('errors');
 
         if (\is_null($errors)) {
+            return;
+        }
+
+        if ($this->notify->hasErrorsBeenAdded($errors)) {
             return;
         }
 
@@ -155,6 +156,6 @@ class NotifyComponent extends Component
             $this->notify->nowError($error);
         }
 
-        $this->notify->markErrorsAsAdded();
+        $this->notify->markErrorsAsAdded($errors);
     }
 }

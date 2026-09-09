@@ -6,6 +6,8 @@ Changelog
 
 - Ajout de la plateforme de test (Pest 5, Testbench 11) et de la suite de tests du package
 - Correction de l'exception levée au rendu par les attributs without-flash-messages et without-now-messages
+- Correction des erreurs de validation qui n'étaient plus reprises passé le premier rendu du composant, sur un serveur survivant aux requêtes (Octane, serveur des tests navigateur)
+- Les méthodes hasErrorsBeenAdded() et markErrorsAsAdded() de Notify prennent désormais le sac d'erreurs en argument, la reprise n'ayant lieu qu'une fois par sac et non une fois par process
 
 
 6.2.1 (2026-07-12)
