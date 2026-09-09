@@ -1,6 +1,13 @@
 Changelog
 =========
 
+6.3.0 (2026-09-09)
+------------------
+
+- Ajout de la plateforme de test (Pest 5, Testbench 11) et de la suite de tests du package
+- Correction de l'exception levée au rendu par les attributs without-flash-messages et without-now-messages
+
+
 6.2.1 (2026-07-12)
 ------------------
 
