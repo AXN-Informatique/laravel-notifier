@@ -15,9 +15,9 @@ class NotifyComponent extends Component
 
     public Collection $nowMessages;
 
-    public int $flashErrorsCount;
+    public int $flashErrorsCount = 0;
 
-    public int $nowErrorsCount;
+    public int $nowErrorsCount = 0;
 
     private readonly Notify $notify;
 
