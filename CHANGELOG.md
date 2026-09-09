@@ -4,27 +4,27 @@ Changelog
 6.3.0 (2026-09-09)
 ------------------
 
-- Ajout de la plateforme de test (Pest 5, Testbench 11) et de la suite de tests du package
-- Correction de l'exception levée au rendu par les attributs without-flash-messages et without-now-messages
-- Correction des erreurs de validation qui n'étaient plus reprises passé le premier rendu du composant, sur un serveur survivant aux requêtes (Octane, serveur des tests navigateur)
-- Les méthodes hasErrorsBeenAdded() et markErrorsAsAdded() de Notify prennent désormais le sac d'erreurs en argument, la reprise n'ayant lieu qu'une fois par sac et non une fois par process
+- Added the testing platform (Pest 5, Testbench 11) and the package test suite
+- Fixed the exception thrown at render time by the `without-flash-messages` and `without-now-messages` attributes
+- Fixed validation errors no longer being picked up after the first render of the component, on a server that outlives requests (Octane, the browser testing server)
+- `Notify::hasErrorsBeenAdded()` and `Notify::markErrorsAsAdded()` now take the error bag as an argument, errors being picked up once per bag instead of once per process. Both are marked `@internal`
 
 
 6.2.1 (2026-07-12)
 ------------------
 
-- Guidelines Boost réduites en pointeur + pièges critiques (détails couverts par le skill)
+- Boost guidelines reduced to a pointer and the critical pitfalls (details covered by the skill)
 
 
 6.2.0 (2026-04-02)
 ------------------
 
-- Ajout du support de Laravel 13
-- Ajout de la documentation Savane (dossier docs/)
-- Ajout des assets Laravel Boost (guidelines et skill)
-- Ajout du fichier CLAUDE.md
-- Modernisation de code base
-- Mise à jour des dépendances de développement
+- Added support for Laravel 13
+- Added Savane documentation (`docs/` directory)
+- Added Laravel Boost assets (guidelines and skill)
+- Added CLAUDE.md file
+- Modernized the code base
+- Updated development dependencies
 
 
 6.1.0 (2025-09-02)
@@ -36,17 +36,17 @@ Changelog
 6.0.0 (2025-03-14)
 ------------------
 
-- Version minimum de PHP passée à 8.4
-- Version minimum de Laravel passée à 12
-- Version minimum de Rector passée à 2
+- Minimum PHP version increased to 8.4
+- Minimum version of Laravel increased to 12
+- Minimum version of Rector increased to 2
 
 
 5.2.0 (2025-09-02)
 ------------------
 
-- Diminution des délais d'affichage par défaut des messages
-- Bouton de fermeture sur les messages SweetAlert
-- Correction erreur de redéclaration de variable JS
+- Decreased the default display delays of messages
+- Close button on SweetAlert messages
+- Fixed a JavaScript variable redeclaration error
 
 
 5.1.0 (2024-05-15)
