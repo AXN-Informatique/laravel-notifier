@@ -1,4 +1,6 @@
+/.phpunit.cache
 /.rector_cache
+/docs/superpowers
 /vendor
 composer.lock
 .idea

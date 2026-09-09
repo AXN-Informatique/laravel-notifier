@@ -17,8 +17,12 @@
         "laravel/framework": "^12.0 || ^13.0"
     },
     "require-dev": {
-        "laravel/pint": "^1.31.1",
         "driftingly/rector-laravel": "^2.6.2",
+        "laravel/pint": "^1.31.1",
+        "orchestra/testbench": "^11.2.0",
+        "pestphp/pest": "^5.1.4",
+        "pestphp/pest-plugin-laravel": "^5.0.1",
+        "phpunit/phpunit": "^13.3.2",
         "rector/rector": "^2.6.6"
     },
     "autoload": {
@@ -28,6 +32,11 @@
         "files": [
             "src/helpers.php"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Axn\\Notifier\\Tests\\": "tests/"
+        }
     },
     "extra": {
         "laravel": {
@@ -39,7 +48,13 @@
     "config" : {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest"
     },
     "minimum-stability" : "dev",
     "prefer-stable": true
