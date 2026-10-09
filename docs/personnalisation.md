@@ -19,7 +19,7 @@ Créer un fichier Blade, par exemple `resources/views/components/my-notify.blade
 <x-notify view-name="components.my-notify" />
 ```
 
-Ou le définir comme vue par défaut dans `config/notifier.php`.
+Ou le définir comme vue par défaut, option `default_view` de `config/notifier.php`.
 
 ### 3. Variables disponibles
 
@@ -36,14 +36,16 @@ Chaque message est un tableau :
 
 ```php
 [
-    'id'         => 'notify-flash-default-1',  // identifiant unique
+    'id'         => 'notify-flash-default1',   // mode, stack et rang du message
     'type'       => 'success',                 // info, success, warning, error
     'message'    => 'Contenu du message',
-    'title'      => 'Titre optionnel',
+    'title'      => 'Titre',                   // null sans titre
     'delay'      => 3000,                      // durée d'affichage (ms)
-    'type_order' => 2,                         // ordre de tri par type
+    'type_order' => 2,                         // rang du type dans sort_type_order
 ]
 ```
+
+L'identifiant est unique dans la page : un message instantané de la stack `custom-stack` aura par exemple `notify-now-custom-stack1`.
 
 ### 5. Boucler sur les messages
 

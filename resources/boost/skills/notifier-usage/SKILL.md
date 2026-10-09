@@ -62,8 +62,8 @@ notify('sidebar')->nowInfo('message');       // named stack
 |-----------|------|---------|-------------|
 | `view-name` | string | config value | Blade template to use |
 | `stack` | string | `default` | Message stack name |
-| `:sort-by-type` | bool | `true` | Sort messages by type |
-| `:group-by-type` | bool | `false` | Group same-type messages |
+| `:sort-by-type` | bool | config `sort_by_type` (`true`) | Sort messages by type |
+| `:group-by-type` | bool | config `group_by_type` (`false`) | Group same-type messages |
 | `:without-flash-messages` | bool | `false` | Hide flash messages |
 | `:without-now-messages` | bool | `false` | Hide instant messages |
 | `:without-view-shared-errors` | bool | `false` | Ignore validation errors |
@@ -72,7 +72,7 @@ notify('sidebar')->nowInfo('message');       // named stack
 
 - `notifier::bootstrap-5`, `notifier::bootstrap-5-toast`, `notifier::bootstrap-5-alert`, `notifier::bootstrap-5-alert-advanced`
 - `notifier::bootstrap-4`, `notifier::bootstrap-4-toast`, `notifier::bootstrap-4-alert`, `notifier::bootstrap-4-alert-advanced`
-- `notifier::sweetalert2` (forces group-by-type, single modal only)
+- `notifier::sweetalert2` (forces group-by-type, one toast at a time)
 - `notifier::pnotify-5`, `notifier::pnotify-3`
 
 ## Custom Templates
@@ -91,7 +91,7 @@ Use the generic partial to avoid rewriting loops:
 
 ## Common Pitfalls
 
-- **XSS**: `$message` and `$title` are NOT escaped in templates. Always use `e()` for user data.
-- **SweetAlert2**: Can only display one modal at a time — messages are automatically grouped by type.
+- **XSS**: `$message` and `$title` are NOT escaped in templates (only quotes are turned into entities). Always use `e()` for user data.
+- **SweetAlert2**: Can only display one toast at a time, so messages are automatically grouped by type and messages of different types in the same request are not all shown.
 - **Bootstrap 5/4 simple views**: Do not support `group-by-type` (forced to `false`).
-- **View shared errors**: Validation errors are automatically added to the default stack as instant messages. Use `:without-view-shared-errors="true"` to disable.
+- **View shared errors**: Validation errors of the default error bag are automatically added to the default stack as instant messages, once per request. Use `:without-view-shared-errors="true"` to disable.

@@ -60,16 +60,16 @@ Documentation
 La documentation complète est disponible dans le dossier [`docs/`](docs/_index.md) :
 
 - [Installation et configuration](docs/installation.md)
-- [Déclaration des messages](docs/utilisation.md) — flash, instantanés, titres, délais, stacks, conditionnels
-- [Affichage des messages](docs/affichage.md) — composant Blade, attributs, tri, groupement
-- [Templates de vues](docs/templates.md) — Bootstrap 4/5, SweetAlert2, PNotify
-- [Personnalisation](docs/personnalisation.md) — créer son propre template
+- [Déclaration des messages](docs/utilisation.md) : flash, instantanés, titres, délais, stacks, conditionnels
+- [Affichage des messages](docs/affichage.md) : composant Blade, attributs, tri, groupement
+- [Templates de vues](docs/templates.md) : Bootstrap 4/5, SweetAlert2, PNotify
+- [Personnalisation](docs/personnalisation.md) : créer son propre template
 
 
 Mises à jour
 ------------
 
-Consultez le fichier [`UPGRADE.md`](UPGRADE.md) pour les instructions de mise à jour.
+Consultez le fichier [`UPGRADE.md`](https://github.com/AXN-Informatique/laravel-notifier/blob/master/UPGRADE.md) pour les instructions de mise à jour.
 
 
 Licence

@@ -85,12 +85,12 @@ notify()->nowInfo('Message long à lire.', 'Information', 15000);
 | warning | 8000 ms |
 | error | 8000 ms |
 
-Le temps d'affichage des erreurs est multiplié par le nombre d'erreurs dans les templates fournis.
+Seuls les templates qui ferment le message d'eux-mêmes utilisent ce délai : SweetAlert2, Bootstrap 5 Toast et Bootstrap 4 Toast. Ils multiplient celui d'une erreur par le nombre d'erreurs. Les autres templates l'ignorent : les alertes et les paragraphes Bootstrap restent affichés, PNotify applique le délai de sa propre configuration.
 
 Sécurité XSS
 -------------
 
-Les variables `$message` et `$title` ne sont **pas échappées** dans les templates (pour permettre le HTML).
+Les variables `$message` et `$title` ne sont **pas échappées** dans les templates (pour permettre le HTML). Seuls les guillemets simples et doubles sont convertis en entités (`&apos;`, `&quot;`) à l'enregistrement, pour ne pas casser le JavaScript des templates : ce n'est pas une protection contre le XSS.
 
 **Toujours échapper** les données utilisateur avec `e()` :
 

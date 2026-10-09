@@ -24,9 +24,13 @@ Publier le fichier de configuration :
 php artisan vendor:publish --tag="notifier-config"
 ```
 
-Le fichier sera copié dans `config/notifier.php`.
+La commande crée un fichier `config/notifier.php` vide : n'y ajouter que les valeurs à modifier, les autres sont fusionnées depuis la configuration du package (`vendor/axn/laravel-notifier/config/notifier.php`).
 
-**Astuce** : ne mettre dans ce fichier que les valeurs modifiées, le reste sera fusionné depuis le package.
+```php
+return [
+    'default_view' => 'notifier::bootstrap-5-toast',
+];
+```
 
 ### Options disponibles
 
@@ -36,9 +40,11 @@ Le fichier sera copié dans `config/notifier.php`.
 | `sort_by_type` | bool | `true` | Trier les messages par type |
 | `sort_type_order` | array | `[error, warning, success, info]` | Ordre d'affichage des types |
 | `group_by_type` | bool | `false` | Grouper les messages du même type |
-| `group_messages_format` | string | `<ul>...</ul>` | Format HTML des messages groupés |
-| `group_title_format` | string | `<strong>...</strong>` | Format HTML du titre groupé |
-| `group_message_format` | string | `<li>...</li>` | Format HTML d'un message groupé |
+| `group_messages_format` | string | `<ul class="list-unstyled mb-0">%s</ul>` | Élément HTML qui enveloppe les messages groupés |
+| `group_title_format` | string | `<strong>%s&nbsp;:&nbsp;</strong>` | HTML du titre d'un message groupé |
+| `group_message_format` | string | `<li>%s%s</li>` | HTML d'un message groupé : titre puis message |
+
+Les trois formats sont des masques `sprintf()`.
 
 Publication des vues
 --------------------

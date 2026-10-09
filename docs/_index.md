@@ -10,6 +10,12 @@ Package Laravel pour uniformiser et simplifier l'enregistrement et l'affichage d
 
 **Attention** : à ne pas confondre avec les « [Notifications](https://laravel.com/docs/notifications) » de Laravel. Ce package utilise les « [Session Flash Data](https://laravel.com/docs/session#flash-data) ».
 
+Prérequis
+---------
+
+- PHP 8.4+
+- Laravel 12 ou 13
+
 Concepts clés
 -------------
 
@@ -47,7 +53,9 @@ graph TD
 
 | Fichier | Rôle |
 |---------|------|
-| `src/Notify.php` | Classe principale avec les traits |
+| `src/Notify.php` | Classe principale, enregistrée en singleton |
+| `src/Concerns/` | Traits `HasFlashMessages`, `HasNowMessages`, `CanGroupMessagesByType` |
+| `src/ServiceProvider.php` | Configuration, vues `notifier::`, composant `notify`, publications |
 | `src/helpers.php` | Helper `notify()` |
 | `src/View/Components/NotifyComponent.php` | Composant Blade `<x-notify />` |
 | `config/notifier.php` | Configuration (vue par défaut, tri, groupement) |
