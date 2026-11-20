@@ -12,5 +12,13 @@
 @endphp
 
 <script>
-    PNotify.alert({!! $PNotifyParams !!});
+    (function (show) {
+        if (typeof PNotify === 'undefined' && document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', show);
+        } else {
+            show();
+        }
+    })(function () {
+        PNotify.alert({!! $PNotifyParams !!});
+    });
 </script>

@@ -38,5 +38,13 @@
 </div>
 
 <script>
-    new bootstrap.Toast(document.getElementById('{!! $id !!}')).show()
+    (function (show) {
+        if (typeof bootstrap === 'undefined' && document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', show);
+        } else {
+            show();
+        }
+    })(function () {
+        new bootstrap.Toast(document.getElementById('{!! $id !!}')).show()
+    });
 </script>

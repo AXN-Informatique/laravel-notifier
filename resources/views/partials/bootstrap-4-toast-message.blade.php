@@ -42,5 +42,13 @@
 </div>
 
 <script>
-    $('#{!! $id !!}').toast()
+    (function (show) {
+        if (typeof $ === 'undefined' && document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', show);
+        } else {
+            show();
+        }
+    })(function () {
+        $('#{!! $id !!}').toast()
+    });
 </script>

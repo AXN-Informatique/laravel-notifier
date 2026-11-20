@@ -107,6 +107,21 @@ Support de PNotify 3 pour les projets legacy.
 
 **Prérequis** : PNotify 3 et jQuery (le template crée les notifications au chargement de la page, via `jQuery(function () { … })`)
 
+Chargement différé des bibliothèques
+------------------------------------
+
+Les templates à script (Bootstrap 5 Toast, Bootstrap 4 Toast, SweetAlert2, PNotify 5, PNotify 3) s'exécutent à l'endroit où ils sont rendus. Une bibliothèque chargée par un module (par exemple avec Vite) n'est disponible qu'une fois la page lue : le template l'attend alors sur `DOMContentLoaded`. Une bibliothèque déjà chargée sert immédiatement.
+
+| Template | Bibliothèque testée |
+|----------|---------------------|
+| `bootstrap-5-toast` | `bootstrap` |
+| `bootstrap-4-toast` | `$` |
+| `sweetalert2` | `Swal` |
+| `pnotify-5` | `PNotify` |
+| `pnotify-3` | `jQuery` |
+
+L'attente n'a lieu que si la bibliothèque est absente et la page encore en lecture. Une vue personnalisée qui appelle la bibliothèque sans cette garde reste soumise à l'ordre de chargement des scripts.
+
 Limitations par template
 ------------------------
 
