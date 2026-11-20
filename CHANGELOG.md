@@ -1,6 +1,12 @@
 Changelog
 =========
 
+6.4.0 (2026-11-20)
+------------------
+
+- Script templates (SweetAlert2, Bootstrap 4 and 5 toasts, PNotify 3 and 5) wait for `DOMContentLoaded` when their library is not loaded yet, as when it comes from a module (Vite); unchanged when it is already loaded (see `docs/templates.md`)
+
+
 6.3.0 (2026-09-09)
 ------------------
 
